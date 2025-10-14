@@ -1,3132 +1,5821 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
+
     <html lang="en">
 
+
+
     <head>
+
         <meta charset="UTF-8">
+
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
         <title>Department of CS-Cyber Security And Information Security - GM University</title>
-        <!-- Load Tailwind CSS -->
+
         <script src="https://cdn.tailwindcss.com"></script>
+
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-        <!-- Load Inter font - assumed from the original structure -->
+
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+
+
         <style>
+
             @import "tailwindcss";
+
             /* Configure Tailwind for Inter font */
+
             html {
+
                 font-family: 'Inter', sans-serif;
+
                 scroll-behavior: smooth;
+
             }
+
+
 
             /* Custom Styles for Princeton-Inspired Look and Complex Layouts */
 
+
+
             /* Variables and Core Styling */
+
             :root {
+
                 --primary-color: #4A206A;
+
                 /* Deep Indigo/Violet */
+
                 --secondary-color: #00BFA5;
+
                 /* Bright Teal/Cyan */
+
                 --light-bg: #f7f7f7;
+
                 --dark-text: #1A1A1A;
+
             }
+
+
 
             /* 1. Header & Top Bar */
+
             .header {
+
                 position: sticky;
+
                 top: 0;
+
                 z-index: 50;
+
                 background-color: #fff;
+
                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
+
+
             }
+
+
 
             .top-bar {
+
                 background-color: var(--primary-color);
+
                 color: #fff;
+
                 padding: 8px 0;
+
                 font-size: 0.8rem;
+
             }
+
+
 
             .top-bar .container {
+
                 display: flex;
+
                 justify-content: space-between;
+
                 align-items: center;
+
                 max-width: 1280px;
+
                 margin: 0 auto;
+
                 padding: 0 1rem;
+
             }
+
+
 
             .contact-info span,
+
             .kcet-codes span {
+
                 margin-right: 24px;
+
                 display: inline-flex;
+
                 align-items: center;
+
             }
+
+
 
             .contact-info i {
+
                 margin-right: 5px;
+
                 color: var(--secondary-color);
+
             }
+
+
 
             .university-brand {
+
                 display: flex;
+
                 align-items: center;
+
             }
+
+
 
             .university-brand .logo {
+
                 height: 100px;
+
                 width: 100px;
+
                 border-radius: 50%;
+
                 margin-right: 10px;
+
             }
+
+
 
             .brand-text h1 {
+
                 font-size: 1.2rem;
+
                 font-weight: 700;
+
                 line-height: 1;
+
                 margin: 0;
+
                 color: #fff;
+
             }
+
+
 
             .brand-text p {
+
                 font-size: 0.7rem;
+
                 font-weight: 300;
+
                 margin: 0;
+
                 color: #ccc;
+
             }
+
+
 
             .navbar {
+
                 padding: 0;
+
             }
+
+
 
             .navbar .container {
+
                 display: flex;
+
                 justify-content: center;
+
                 align-items: center;
+
                 max-width: 1280px;
+
                 margin: 0 auto;
+
                 padding: 0 1rem;
+
             }
+
+
 
             .nav-menu {
+
                 display: flex;
+
                 list-style: none;
+
                 padding: 0;
+
                 margin: 0;
+
             }
+
+
 
             .nav-menu li a {
+
                 padding: 1rem 1rem;
+
                 display: block;
+
                 color: var(--dark-text);
+
                 font-weight: 500;
+
                 transition: all 0.3s ease;
+
                 text-transform: uppercase;
+
                 font-size: 0.9rem;
+
                 border-bottom: 3px solid transparent;
+
             }
+
+
 
             .nav-menu li a:hover,
+
             .nav-menu li a.active {
+
                 color: var(--primary-color);
+
                 border-bottom: 3px solid var(--primary-color);
+
             }
+
+
 
             .hamburger {
+
                 display: none;
+
                 cursor: pointer;
+
                 padding: 10px;
+
             }
+
+
 
             .hamburger span {
+
                 display: block;
+
                 width: 25px;
+
                 height: 3px;
+
                 background-color: var(--dark-text);
+
                 margin: 5px 0;
+
                 transition: all 0.3s ease;
+
             }
+
+
 
             /* 2. News Line */
+
             .news-line {
+
                 background-color: var(--secondary-color);
+
                 color: #fff;
+
                 padding: 5px 0;
+
                 overflow: hidden;
+
                 font-size: 0.9rem;
+
                 white-space: nowrap;
+
             }
+
+
 
             .news-line marquee {
+
                 padding: 0 1rem;
+
             }
+
+
 
             /* 3. Hero Section (Slider) - Custom CSS needed for Ken Burns/Fade */
+
             .slider {
+
                 height: 50vh;
+
                 position: relative;
+
                 overflow: hidden;
+
             }
+
+
 
             .slides {
+
                 width: 100%;
+
                 height: 100%;
+
                 position: relative;
+
             }
+
+
 
             .slide {
+
                 position: absolute;
+
                 top: 0;
+
                 left: 0;
+
                 width: 100%;
+
                 height: 100%;
+
                 background-color: #333;
+
                 background-size: cover;
+
                 background-repeat: no-repeat;
+
                 background-position: center 40%;
+
                 transform: scale(1.05);
+
                 /* Initial scale for the zoom effect */
+
                 opacity: 0;
+
                 transition: opacity 1.5s ease-in-out;
+
                 z-index: 1;
+
             }
+
+
 
             .slide.active {
+
                 opacity: 1;
+
                 z-index: 2;
+
                 animation: kenburns-zoom 2s linear forwards;
+
                 /* Start the slow zoom */
+
             }
+
+
 
             @keyframes kenburns-zoom {
+
                 from {
+
                     transform: scale(1.05);
+
                 }
+
+
 
                 to {
+
                     transform: scale(1.15);
+
                 }
+
             }
+
+
 
             .slide-overlay {
+
                 position: absolute;
+
                 left: 0;
+
                 right: 0;
+
                 bottom: 12%;
+
                 text-align: center;
+
                 padding: 24px 40px;
+
                 color: #fff;
+
                 text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+
                 max-width: 900px;
+
                 z-index: 5;
+
             }
+
+
 
             .slide-overlay h1 {
+
                 margin: 0;
+
                 font-size: 1.2rem;
+
                 font-weight: 600;
+
                 opacity: .95;
+
             }
+
+
 
             .slide-overlay h2 {
+
                 margin: 6px 0 10px;
+
                 font-size: 2.6rem;
+
                 line-height: 1;
+
                 font-weight: 700;
+
             }
+
+
 
             .slide-overlay p {
+
                 margin: 0;
+
                 font-size: 1rem;
+
                 opacity: .95;
+
             }
+
+
 
             /* 4. Section General Styling */
+
             .section {
+
                 padding: 4rem 1rem;
+
                 background-color: #fff;
+
             }
+
+
 
             .section-header {
+
                 text-align: center;
+
                 margin-bottom: 3rem;
+
             }
+
+
 
             .section-title {
+
                 font-size: 2.25rem;
+
                 font-weight: 700;
+
                 color: var(--primary-color);
+
                 margin-bottom: 0.5rem;
+
             }
+
+
 
             .section-subtitle {
+
                 font-size: 1.125rem;
+
                 color: #666;
+
             }
+
+
 
             /* 5. Walkthrough Video Section */
+
             /* Make the walkthrough/video section span the full viewport and ensure the video covers it */
+
             .video-section {
+
                 position: relative;
+
                 min-height: 100vh;
+
                 height: 100vh;
+
                 /* full viewport height */
+
                 overflow: hidden;
+
                 display: flex;
+
                 align-items: center;
+
                 justify-content: center;
+
                 color: #fff;
+
                 text-align: center;
+
             }
+
+
 
             /* Make the video fill its parent and maintain aspect ratio by cropping (cover) */
+
             .background-video {
+
                 position: absolute;
+
                 top: 0;
+
                 left: 0;
+
                 width: 100%;
+
                 height: 100%;
+
                 object-fit: cover;
+
                 /* ensures full coverage without distortion */
+
                 z-index: 0;
+
             }
+
+
 
             .video-section::before {
+
                 content: '';
+
                 position: absolute;
+
                 top: 0;
+
                 left: 0;
+
                 right: 0;
+
                 bottom: 0;
+
                 background: rgba(0, 0, 0, 0.6);
+
                 /* Dark overlay */
+
                 z-index: 1;
+
             }
+
+
 
             .video-content {
+
                 position: relative;
+
                 z-index: 2;
+
                 padding: 2rem;
+
                 border-radius: 0.75rem;
+
             }
+
+
 
             .video-content .section-title {
+
                 color: #fff;
+
                 text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+
             }
+
+
 
             .video-content p {
+
                 font-size: 1.1rem;
+
             }
+
+
 
             .video-content .btn-primary {
+
                 background-color: var(--secondary-color);
+
                 color: #fff;
+
                 padding: 0.75rem 1.5rem;
+
                 border-radius: 0.5rem;
+
                 font-weight: 600;
+
                 transition: background-color 0.3s;
+
             }
 
+
+
             .video-content .btn-primary:hover {
+
                 background-color: #009986;
+
             }
+
+
 
             /* Updated Hover Color */
 
+
+
             /* 6. Achievements Slider (Marquee Effect via CSS Animation) */
+
             .achievements-section {
+
                 background-color: var(--light-bg);
+
                 padding: 5rem 0;
+
                 overflow: hidden;
+
             }
+
+
 
             .section-achievements {
+
                 color: var(--secondary-color);
+
             }
+
+
 
             .achievements-slider {
+
                 width: 100%;
+
                 overflow: hidden;
+
                 padding: 20px 0;
+
             }
 
+
+
             .slider-track {
+
                 display: flex;
+
                 width: max-content;
+
                 /* Ensure the track is wide enough for all duplicates */
+
                 animation: scroll 30s linear infinite;
+
             }
+
+
 
             .achievement-card {
+
                 background: #fff;
+
                 border-radius: 0.75rem;
+
                 box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
                 padding: 1.5rem;
+
                 margin: 0 15px;
+
                 width: 300px;
+
                 /* Fixed width for card */
+
                 flex-shrink: 0;
+
                 transition: transform 0.3s;
+
             }
+
+
 
             .achievement-card:hover {
+
                 transform: translateY(-5px);
+
                 box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+
             }
+
+
 
             .achievement-card img {
+
                 width: 100%;
+
                 height: 180px;
+
                 object-fit: cover;
+
                 border-radius: 0.5rem;
+
                 margin-bottom: 1rem;
+
             }
+
+
 
             .achievement-card h3 {
+
                 font-size: 1.125rem;
+
                 font-weight: 600;
+
                 color: var(--primary-color);
+
                 margin-bottom: 0.5rem;
+
             }
+
+
 
             @keyframes scroll {
+
                 0% {
+
                     transform: translateX(0);
+
                 }
 
+
+
                 100% {
+
                     transform: translateX(calc(-50% - 15px));
+
                 }
+
+
 
                 /* Scrolls exactly halfway (5 duplicated items + 15px margin) */
+
             }
+
+
 
             /* 7. Vision/Mission/Objectives Grid Layout */
+
             .vision-mission-grid {
+
                 display: grid;
+
                 grid-template-columns: 1fr;
+
                 /* Default to single column for mobile */
+
                 gap: 2rem;
+
             }
+
+
 
             @media (min-width: 1024px) {
+
                 .vision-mission-grid {
+
                     grid-template-columns: repeat(3, 1fr);
+
                     /* 3 equal columns on large screens */
+
                 }
+
             }
+
+
 
             .vision-card,
+
             .mission-card,
+
             .objectives-card {
+
                 padding: 30px;
+
                 border-radius: 12px;
+
                 box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+
                 height: 100%;
+
                 /* Ensure equal height */
+
                 display: flex;
+
                 flex-direction: column;
+
                 align-items: center;
+
                 text-align: center;
+
                 transition: transform 0.3s ease, box-shadow 0.3s ease;
+
             }
+
+
 
             .vision-card {
+
                 background-color: var(--primary-color);
+
                 color: #fff;
+
             }
+
+
 
             .mission-card {
+
                 background: #fff !important;
+
                 /* White background */
+
                 color: var(--dark-text);
+
                 border: 1px solid #e5e7eb;
+
                 /* Subtle border */
+
             }
+
+
 
             .objectives-card {
+
                 background: #f3f4f6;
+
                 /* Requested Light Gray Background (Tailwind gray-100 equivalent) */
+
                 color: var(--dark-text);
+
                 border: 1px solid #e5e7eb;
+
             }
+
+
 
             .vision-card:hover,
+
             .mission-card:hover,
+
             .objectives-card:hover {
+
                 transform: translateY(-5px);
+
                 box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+
             }
 
+
+
             .card-icon {
+
                 font-size: 2rem;
+
                 color: var(--secondary-color);
+
                 margin-bottom: 16px;
+
             }
+
+
 
             .vision-card h3,
+
             .mission-card h3,
+
             .objectives-card h3 {
+
                 font-weight: 800;
+
                 font-size: 1.8rem;
+
                 margin-top: 0;
+
                 color: var(--primary-color);
+
             }
+
+
 
             .vision-card h3 {
+
                 color: #fff;
+
             }
+
+
 
             .mission-card ul,
+
             .objectives-card ul {
+
                 list-style-type: none;
+
                 padding-left: 0;
+
                 text-align: left;
+
                 flex-grow: 1;
+
                 margin-top: 1rem;
+
             }
+
+
 
             .mission-card li,
+
             .objectives-card li {
+
                 font-size: 0.95rem;
+
                 line-height: 1.6;
+
                 margin-bottom: 0.5rem;
+
                 padding-left: 1.5em;
+
                 text-indent: -1.5em;
+
             }
 
+
+
             .mission-card li::before {
+
                 content: "•";
+
                 color: var(--primary-color);
+
                 font-weight: bold;
+
                 display: inline-block;
+
                 width: 1em;
+
                 margin-right: 0.5em;
+
             }
+
+
+
 
 
             .card-icon {
+
                 font-size: 2rem;
+
                 color: var(--secondary-color);
+
                 margin-bottom: 16px;
+
             }
+
             /* 8. Gallery */
+
             .featured-video {
+
                 max-width: 900px;
+
                 margin: 2rem auto;
+
             }
+
+
 
             .featured-video iframe {
+
                 width: 100%;
+
                 height: 500px;
+
                 border-radius: 0.75rem;
+
             }
+
+
 
             .sub-heading {
+
                 font-size: 1.5rem;
+
                 color: var(--primary-color);
+
                 font-weight: 600;
+
                 margin-top: 3rem;
+
                 margin-bottom: 1.5rem;
+
                 border-bottom: 2px solid #eee;
+
                 padding-bottom: 10px;
+
             }
+
+
 
             .video-grid {
+
                 display: grid;
+
                 grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
                 gap: 20px;
+
                 margin-bottom: 3rem;
+
             }
+
+
 
             .video-grid iframe {
+
                 width: 100%;
+
                 height: 200px;
+
                 border-radius: 0.75rem;
+
                 box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
             }
+
+
 
             .photo-grid {
+
                 display: grid;
+
                 grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+
                 gap: 10px;
+
             }
+
+
 
             .photo-grid img {
+
                 width: 100%;
+
                 height: 100px;
+
                 object-fit: cover;
+
                 border-radius: 0.5rem;
+
                 cursor: pointer;
+
                 transition: transform 0.2s;
+
             }
+
+
 
             .photo-grid img:hover {
+
                 transform: scale(1.05);
+
             }
+
+
 
             /* Lightbox */
+
             .lightbox {
+
                 display: none;
+
                 position: fixed;
+
                 z-index: 100;
+
                 padding-top: 60px;
+
                 left: 0;
+
                 top: 0;
+
                 width: 100%;
+
                 height: 100%;
+
                 overflow: auto;
+
                 background-color: rgba(0, 0, 0, 0.9);
+
             }
+
+
 
             .lightbox-img {
+
                 margin: auto;
+
                 display: block;
+
                 width: 80%;
+
                 max-width: 700px;
+
                 border-radius: 0.75rem;
+
             }
+
+
 
             /* 9. About Section */
+
             .about-grid {
+
                 display: grid;
+
                 grid-template-columns: 2fr 1fr;
+
                 gap: 3rem;
+
                 align-items: center;
+
             }
+
+
 
             .about-content p {
+
                 margin-bottom: 1.5rem;
+
                 line-height: 1.8;
+
                 color: var(--dark-text);
+
             }
+
+
 
             .about-image img {
+
                 width: 100%;
+
                 height: auto;
+
                 border-radius: 0.75rem;
+
                 box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+
             }
+
+
 
             /* SECTION BACKGROUND */
+
             .hod-message {
+
                 background-color: var(--light-bg);
+
                 padding: 6rem 1rem;
+
                 /* More vertical padding for space */
+
             }
+
+
 
             /* CARD CONTAINER - White, clean, spacious */
+
             .hod-content {
+
                 display: flex;
+
                 align-items: flex-start;
+
                 gap: 4rem;
+
                 /* Increased gap for more breathing room */
+
                 max-width: 1200px;
+
                 /* Wider card */
+
                 margin: 0 auto;
+
                 background: #fff;
+
                 padding: 3rem;
+
                 /* Increased internal padding */
+
                 border-radius: 16px;
+
                 /* Subtle, professional shadow */
+
                 box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+
             }
+
+
 
             /* HOD IMAGE (Circle) */
+
             .hod-image img {
+
                 width: 150px;
+
                 /* Slightly larger image */
+
                 height: 150px;
+
                 object-fit: cover;
+
                 border-radius: 50%;
+
                 border: 4px solid var(--secondary-color);
+
                 /* Thicker, defined border */
+
                 margin: 0 auto 1rem;
+
                 display: block;
+
                 transition: transform 0.3s ease;
+
             }
+
+
 
             .hod-image img:hover {
+
                 transform: scale(1.03);
+
                 /* Subtle hover effect */
+
             }
+
+
 
             .hod-image p {
+
                 color: var(--dark-text);
+
                 /* Changed to use the CSS variable */
+
             }
+
+
 
             /* MESSAGE TEXT */
+
             .hod-text {
+
                 color: var(--dark-text);
+
                 /* Changed to use the CSS variable */
+
             }
+
+
 
             /* MAIN TITLE (H2) */
+
             .hod-text h2 {
+
                 font-size: 2.25rem;
+
                 font-weight: 700;
+
                 /* Bold, but not ultra-bold */
+
                 color: var(--primary-color);
+
                 margin-bottom: 1.5rem;
+
                 border-bottom: 3px solid var(--secondary-color);
+
                 /* Thinner border */
+
                 display: inline-block;
+
                 padding-bottom: 0.5rem;
+
             }
+
+
 
             /* BLOCKQUOTE (Message Body) */
+
             .hod-text blockquote {
+
                 margin: 2rem 0;
+
                 /* More space around the quote */
+
                 border-left: 5px solid var(--secondary-color);
+
                 /* Clear left border */
+
                 padding-left: 2rem;
+
                 font-style: normal;
+
                 /* Removing italics for a cleaner academic tone */
+
                 font-size: 1.1rem;
+
                 line-height: 1.75;
+
             }
+
+
 
             /* HOD INFO (Signature) */
+
             .hod-info h4:first-child {
+
                 font-weight: 700;
+
                 font-size: 1.25rem;
+
                 /* Larger name */
+
                 color: var(--primary-color);
+
                 margin-bottom: 0.25rem;
+
             }
+
+
 
             .hod-info h4:last-child {
+
                 color: var(--primary-color);
+
                 font-size: 0.95rem;
+
                 font-weight: 400;
+
                 /* Regular weight for descriptive text */
+
                 opacity: 0.8;
+
                 margin-top: 0;
+
             }
+
+
 
             /* Responsive adjustments for small screens */
+
             @media (max-width: 768px) {
+
                 .hod-content {
+
                     flex-direction: column;
+
                     align-items: center;
+
                     gap: 2rem;
+
                     padding: 1.5rem;
+
                 }
+
+
 
                 .hod-message {
+
                     padding: 4rem 0.5rem;
+
                 }
+
             }
+
+
 
             /* 11. Faculty */
+
             .faculty-grid {
+
                 display: grid;
+
                 grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
                 gap: 2rem;
+
             }
+
+
 
             .faculty-card {
+
                 background: var(--light-bg);
+
                 border-radius: 0.75rem;
+
                 overflow: hidden;
+
                 box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+
                 text-align: center;
+
                 padding: 1.5rem;
+
             }
+
+
 
             .faculty-card img {
+
                 width: 120px;
+
                 height: 120px;
+
                 object-fit: cover;
+
                 border-radius: 50%;
+
                 margin: 0 auto 1rem;
+
                 border: 3px solid var(--primary-color);
+
             }
+
+
 
             .faculty-card h3 {
+
                 font-size: 1.125rem;
+
                 font-weight: 700;
+
                 color: var(--primary-color);
+
                 margin-bottom: 5px;
+
             }
+
+
 
             .faculty-card .position {
+
                 color: var(--secondary-color);
+
                 font-style: italic;
+
                 margin-bottom: 1rem;
+
             }
+
+
 
             .download-btn {
+
                 display: inline-block;
+
                 background-color: var(--primary-color);
+
                 color: #fff;
+
                 padding: 8px 15px;
+
                 border-radius: 0.5rem;
+
                 font-size: 0.875rem;
+
                 transition: background-color 0.3s;
+
             }
+
+
 
             .download-btn:hover {
+
                 background-color: #003366;
+
             }
+
+
 
             /* 12. Student Corner & Resources */
+
             .corner-grid,
+
             .resources-grid {
+
                 display: grid;
+
                 grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
                 gap: 2rem;
+
                 margin-top: 2rem;
+
             }
+
+
 
             .corner-card,
+
             .resource-card {
+
                 background: #fff;
+
                 padding: 1.5rem;
+
                 border-radius: 0.75rem;
+
                 box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+
                 border-top: 5px solid var(--secondary-color);
+
                 transition: transform 0.3s;
+
             }
+
+
 
             .corner-card:hover,
+
             .resource-card:hover {
+
                 transform: translateY(-5px);
+
                 box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+
             }
+
+
 
             .corner-card img,
+
             .resource-card img {
+
                 width: 100%;
+
                 height: 200px;
+
                 object-fit: cover;
+
                 border-radius: 0.5rem;
+
                 margin-bottom: 1rem;
+
             }
+
+
 
             .corner-card h3,
+
             .resource-card h3 {
+
                 font-size: 1.25rem;
+
                 font-weight: 700;
+
                 color: var(--primary-color);
+
                 margin-bottom: 0.5rem;
+
             }
+
+
 
             .corner-link {
+
                 color: var(--secondary-color);
+
                 font-weight: 600;
+
                 margin-top: 1rem;
+
                 display: block;
+
             }
+
+
 
             .resources {
+
                 background-color: var(--light-bg);
+
             }
+
+
 
             /* 13. IQAC */
+
             .iqac-section {
+
                 background-color: #fff;
+
             }
+
+
 
             .iqac-coordinator {
+
                 text-align: center;
+
                 margin-bottom: 3rem;
+
             }
+
+
 
             .coordinator-info {
+
                 display: inline-flex;
+
                 align-items: center;
+
                 gap: 1rem;
+
                 padding: 1rem 2rem;
+
                 border: 1px solid #ddd;
+
                 border-radius: 0.75rem;
+
             }
+
+
 
             .coordinator-info img {
+
                 width: 80px;
+
                 height: 80px;
+
                 object-fit: cover;
+
                 border-radius: 50%;
+
             }
+
+
 
             .coordinator-details h3 {
+
                 font-size: 1.125rem;
+
                 font-weight: 700;
+
                 color: var(--primary-color);
+
                 margin: 0;
+
             }
+
+
 
             .coordinator-details p {
+
                 color: #666;
+
                 margin: 0;
+
                 font-style: italic;
+
             }
+
+
 
             .iqac-documents {
+
                 display: flex;
+
                 justify-content: center;
+
             }
+
+
 
             .document-list {
+
                 display: flex;
+
                 flex-wrap: wrap;
+
                 gap: 20px;
+
                 max-width: 800px;
+
             }
+
+
 
             .document-item {
+
                 display: flex;
+
                 align-items: center;
+
                 gap: 15px;
+
                 background: var(--light-bg);
+
                 padding: 15px;
+
                 border-radius: 0.5rem;
+
                 flex: 1 1 calc(50% - 10px);
+
                 border-left: 5px solid var(--primary-color);
+
             }
+
+
 
             .document-item i {
+
                 font-size: 1.5rem;
+
                 color: var(--secondary-color);
+
             }
+
+
 
             .document-info h4 {
+
                 font-size: 1rem;
+
                 font-weight: 600;
+
                 margin: 0 0 5px 0;
+
                 color: var(--dark-text);
+
             }
+
+
 
             .document-info p {
+
                 font-size: 0.875rem;
+
                 color: #777;
+
                 margin: 0 0 5px 0;
+
             }
+
+
 
             .download-link {
+
                 color: var(--primary-color);
+
                 font-weight: 500;
+
                 font-size: 0.875rem;
+
             }
+
+
 
             /* 14. Responsive adjustments */
+
             @media (max-width: 1024px) {
+
                 .nav-menu li a {
+
                     padding: 1rem 0.75rem;
+
                     font-size: 0.85rem;
+
                 }
 
+
+
                 .top-bar .container {
+
                     flex-direction: column;
+
                     text-align: center;
+
                     gap: 10px;
+
                 }
+
+
 
                 .contact-info,
+
                 .kcet-codes {
+
                     justify-content: center;
+
                 }
+
             }
+
+
 
             @media (max-width: 768px) {
+
                 .slider {
+
                     height: 35vh;
+
                 }
+
+
 
                 .slide-overlay {
+
                     padding: 16px 20px;
+
                     bottom: 8%;
+
                 }
+
+
 
                 .slide-overlay h2 {
+
                     font-size: 1.8rem;
+
                 }
+
+
 
                 .top-bar .container {
+
                     align-items: center;
+
                 }
+
+
 
                 .university-brand {
+
                     margin: 10px 0;
+
                 }
+
+
 
                 .contact-info span,
+
                 .kcet-codes span {
+
                     margin-right: 0;
+
                     margin: 0 10px;
+
                 }
+
+
 
                 .nav-menu {
+
                     display: none;
+
                     flex-direction: column;
+
                     width: 100%;
+
                     position: absolute;
+
                     top: 100%;
+
                     left: 0;
+
                     background: #fff;
+
                     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
                     padding: 10px 0;
+
                 }
+
+
 
                 .nav-menu.active {
+
                     display: flex;
+
                 }
+
+
 
                 .hamburger {
+
                     display: block;
+
                 }
+
+
 
                 .navbar .container {
+
                     justify-content: flex-end;
+
                 }
+
+
 
                 .section {
+
                     padding: 3rem 1rem;
+
                 }
+
+
 
                 .about-grid,
+
                 .vision-mission-grid,
+
                 .hod-content {
+
                     grid-template-columns: 1fr;
+
                     display: flex;
+
                     flex-direction: column;
+
                 }
+
+
 
                 .hod-image {
+
                     margin: 0 auto;
+
                 }
+
+
 
                 .hod-content {
+
                     text-align: center;
+
                 }
+
+
 
                 .hod-text blockquote {
+
                     text-align: left;
+
                 }
+
+
 
                 .document-item {
+
                     flex: 1 1 100%;
+
                 }
+
+
 
                 @keyframes scroll {
+
                     0% {
+
                         transform: translateX(0);
+
                     }
+
+
 
                     100% {
+
                         transform: translateX(calc(-100% - 15px));
+
                     }
 
+
+
                     /* Adjust for mobile scrolling of 1 card width */
+
                 }
+
             }
+
+
 
             .achievements-slider,
+
             .recruiters-slider {
+
                 overflow: hidden;
+
                 padding: 2rem 0;
+
                 background-color: #f1f5f9;
+
                 /* slate-100 */
+
             }
+
+
 
             .slider-track {
+
                 display: flex;
+
                 width: fit-content;
+
                 animation: scroll-left 30s linear infinite;
+
             }
+
+
 
             .recruiters-slider .slider-track {
+
                 animation: scroll-left-fast 20s linear infinite;
+
             }
+
+
 
             .achievement-card,
+
             .recruiter-slide {
+
                 flex-shrink: 0;
+
                 width: 320px;
+
                 margin-right: 2rem;
+
             }
+
+
 
             @keyframes scroll-left {
+
                 0% {
+
                     transform: translateX(0);
+
                 }
 
+
+
                 100% {
+
                     transform: translateX(-50%);
+
                 }
+
             }
+
+
 
             @keyframes scroll-left-fast {
+
                 0% {
+
                     transform: translateX(0);
+
                 }
+
+
 
                 100% {
+
                     transform: translateX(-50%);
+
                 }
+
             }
+
+
 
             /* Pause animation on hover */
+
             .slider-track:hover {
+
                 animation-play-state: paused;
+
             }
+
+
 
             /* Utility classes replacement for provided CSS */
+
             .section-header {
+
                 text-align: center;
+
                 margin-bottom: 2.5rem;
+
                 /* 40px */
+
             }
+
+
 
             .section-title {
+
                 font-size: 2.2rem;
+
                 font-weight: 700;
+
                 color: #1d1e1e;
+
             }
+
+
 
             .section-subtitle {
+
                 font-size: 1.5rem;
+
                 /* 24px */
+
                 color: #374151;
+
                 /* gray-700 */
+
                 margin-top: 0.5rem;
+
                 /* 8px */
+
             }
+
+
 
             /* Specific UCP background styles (retaining original intent for gradient) */
+
             #ucp {
+
                 /* Using Tailwind classes for gradient and opacity */
+
                 background: linear-gradient(135deg, rgba(74, 32, 106, 0.9), rgba(0, 191, 165, 0.9));
+
             }
+
             /* --- QUICK ACCESS STYLING (NEW DESIGN) --- */
+
         .academic-card {
+
             background: #fff;
+
             border-radius: 12px;
+
             padding: 2rem;
+
             transition: all 0.2s ease-in-out;
+
             text-align: center;
+
             border: 1px solid #e5e7eb; /* Light border */
+
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+
             /* Subtle initial shadow */
+
             border-top-width: 5px;
+
             /* Use colored border from Tailwind classes */
+
             border-top-style: solid;
+
         }
+
+
 
         .academic-card:hover {
+
             transform: scale(1.02);
+
             /* Subtle lift effect */
+
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+
             /* Stronger hover shadow */
+
         }
+
+
 
         .academic-card .fas {
+
             font-size: 3rem;
+
             margin-bottom: 0.75rem;
+
             transition: color 0.3s;
+
             /* Icon color is controlled directly by Tailwind color classes on the element itself */
+
         }
+
+
 
         .academic-card:hover .fas {
+
             /* Keep icon color consistent or let hover color be handled by Tailwind classes */
+
             opacity: 0.9;
+
         }
 
+
+
         /* End Quick Access Styling */
+
         </style>
+
     </head>
 
+
+
     <body>
+
         <div class="max-w-screen-2xl mx-auto">
-            <!-- Header -->
+
             <header class="header">
+
                 <div class="top-bar">
+
                     <div class="container">
+
                         <div class="contact-info">
+
                             <span><i class="fas fa-phone"></i> 18001237099</span>
+
                             <span><i class="fas fa-envelope"></i> info@gmu.ac.in</span>
+
                         </div>
+
+
 
                         <div class="university-brand">
-                            <!-- Placeholder for logo, replace URL later -->
+
                             <img src="static/images/college logo.jpg"
+
                                 onerror="this.onerror=null; this.src='https://placehold.co/40x40/00458B/ffffff?text=GMU'"
+
                                 alt="GM University Logo" class="logo">
-                            <!-- <div class="brand-text">
-                                <h1>GM UNIVERSITY</h1>
-                                <p>Innovating Minds</p>
-                            </div> -->
 
                             <div class="flex flex-col space-y-1">
-                                <!-- Highlighted Department Title -->
+
                                 <h1 class="text-2xl sm:text-3xl font-extrabold leading-tight" style="color:#eee;">
+
                                     Department of CS-Cyber Security  
+
                                 <br> And Department of CS-Information Security</br>
+
                                 </h1>
-                                <!-- Highlighted Faculty Title -->
+
                                 <h2 text-align="center"
+
                                     class="text-lg sm:text-xl font-semibold text-white-600 leading-tight">
+
                                     Faculty of Engineering and Technology
+
                                 </h2>
+
                             </div>
+
                         </div>
+
+
 
                         <div class="kcet-codes">
+
                             <span>KCET Codes: B.Tech - E303</span>
+
                         </div>
+
                     </div>
+
                 </div>
+
             </header>
 
-            <!-- News Line -->
+
+
             <div class="news-line">
-                <!-- Tailwind does not have a native marquee component, using the HTML tag and custom styling -->
+
                 <marquee behavior="scroll" direction="left" scrollamount="10">
+
                     📢 Admission Open 2025 | 🎓 100% Placement Offers in CSE-Cybersecurity/Information Security. |📊 Your
+
                     journey into the world of Networks,cyber world starts today 🚀. | 🌟 New Courses in leap launched! |
 
+
+
                 </marquee>
+
             </div>
 
-            <!-- Hero Section with Slider -->
+
+
             <section id="home" class="hero-section slider-section">
+
                 <div class="slider" aria-label="Hero slider">
+
                     <div class="slides" id="slides">
-                        <!-- Slide 1 -->
+
                         <div class="slide active" style="background-image: url('static/images/3.jpg');">
+
                             <div class="slide-overlay">
+
                                 <h1>Department of</h1>
+
                                 <h2>CS-Cyber Security and CS-Information Security</h2>
+
                                 <p>professionals capable of developing automated and innovative digital security systems.
+
                                 </p>
+
                             </div>
+
                         </div>
-                        <!-- Slide 2 -->
+
                         <div class="slide" style="background-image: url('static/images/2.jpg');">
+
                             <div class="slide-overlay">
+
                                 <h1>Department of</h1>
+
                                 <h2>CS-Cyber Security and CS-Information Security</h2>
+
                                 <p>professionals capable of developing automated and innovative digital security systems.
+
                                 </p>
+
                             </div>
+
                         </div>
-                        <!-- Slide 3 -->
+
                         <div class="slide" style="background-image: url('static/images/1.jpg');">
+
                             <div class="slide-overlay">
+
                                 <h1>Department of</h1>
+
                                 <h2>CS-Cyber Security and CS-Information Security</h2>
+
                                 <p>professionals capable of developing automated and innovative digital security systems.
+
                                 </p>
+
                             </div>
+
                         </div>
-                        <!-- Slide 4 -->
+
                         <div class="slide" style="background-image: url('static/images/5.jpg');">
+
                             <div class="slide-overlay">
+
                                 <h1>Department of</h1>
+
                                 <h2>CS-Cyber Security and CS-Information Security</h2>
+
                                 <p>professionals capable of developing automated and innovative digital security systems.
+
                                 </p>
+
                             </div>
+
                         </div>
-                        <!-- Slide 5 -->
+
                         <div class="slide" style="background-image: url('static/images/4.jpg');">
+
                             <div class="slide-overlay">
+
                                 <h1>Department of</h1>
+
                                 <h2>CS-Cyber Security and CS-Information Security</h2>
+
                                 <p>professionals capable of developing automated and innovative digital security systems.
+
                                 </p>
+
                             </div>
+
                         </div>
+
                     </div>
+
                 </div>
+
             </section>
 
-            <!-- Spacer -->
+
+
             <div class="py-2"></div>
 
-           <!-- Department Showcase Section -->
-<section id="showcase" class="section bg-gray-50">
+
+
+           <section id="showcase" class="section bg-gray-50">
+
   <div class="container max-w-7xl mx-auto px-4 text-center">
+
     <h2 class="section-title text-[--primary-color]">Department Highlights</h2>
+
     <p class="section-subtitle">A glimpse into our cybersecurity innovation and student activities</p>
+
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+
       <div class="rounded-xl overflow-hidden shadow-lg hover:scale-105 transition-transform duration-300">
+
         <img src="static/images/hero1.jpg" alt="Cyber Lab" class="w-full h-56 object-cover">
+
       </div>
+
       <div class="rounded-xl overflow-hidden shadow-lg hover:scale-105 transition-transform duration-300">
+
         <img src="static/images/hero2.jpg" alt="Workshops" class="w-full h-56 object-cover">
+
       </div>
+
       <div class="rounded-xl overflow-hidden shadow-lg hover:scale-105 transition-transform duration-300">
+
         <img src="static/images/hero3.jpg" alt="Student Projects" class="w-full h-56 object-cover">
+
       </div>
+
       <div class="rounded-xl overflow-hidden shadow-lg hover:scale-105 transition-transform duration-300">
+
         <img src="static/images/hero4.jpg" alt="Student Projects" class="w-full h-56 object-cover">
+
       </div>
+
     </div>
+
   </div>
+
 </section>
+
+
 
         
 
-            <!-- Vision Mission -->
+
+
             <section class="vision-mission section">
+
                 <div class="container max-w-7xl mx-auto px-4">
+
                     <div class="vision-mission-grid">
+
                         <div class="vision-card">
+
                             <div class="card-icon">
+
                                 <i class="fas fa-eye"></i>
+
                             </div>
+
                             <h3>Vision</h3>
-                            <!-- Note: Li used as direct child of div, adjusted styling for appearance -->
+
                             <p>Department of CS-Cyber Security (CY)
+
     will have a transformative impact on society through continual innovation in cybersecurity education, research, ethical hacking, digital forensics, and secure software development — fostering creativity, skill development, and entrepreneurship.</p>
+
                         <p>Department of CS-Information Secuirty(IY)
+
     will have a transformative impact on society through continual innovation in cybersecurity education, research, ethical hacking, digital forensics, and secure software development — fostering creativity, skill development, and entrepreneurship.</p>
+
                         </div>
+
                         <div class="mission-card">
+
                             <div class="card-icon">
+
                                 <i class="fas fa-rocket"></i>
+
                             </div>
+
                             <h3>Missions</h3>
+
                             <ul>
+
                                 <li>Understand cybersecurity concepts in real-time applications and problem-solving.</li>
+
                                 <li>Design robust tools and applications for secure data management.</li>
+
                                 <li>To foster research, entrepreneurship, and industry partnerships that accelerate
+
                                     technological advancements.</li>
+
                                 <li>To empower students with digital leadership skills, creativity, and global perspectives
+
                                     in Cybersecurity.</li>
+
                                 <li>Apply innovative methods for digital security in automation.</li>
+
                             </ul>
+
                         </div>
+
                             <div class="objectives-card">
+
                             <div class="card-icon">
+
                                 <i class="fas fa-eye"></i>
+
                             </div>
+
                             <h3>Objectives</h3>
-                            <!-- Note: Li used as direct child of div, adjusted styling for appearance -->
+
                             <li>To equip students with the skills to meet global-level cybersecurity challenges.
+
                             </li>
+
                             <li>To empower graduates to secure digital data while upholding ethical values.</li>
+
                             <li>To build professionals capable of developing automated and innovative digital security
+
                                 systems.</li>
+
                         </div>
+
                     </div>
+
                 </div>
+
             </section>
 
-            <!-- ================= GALLERY SECTION ================= -->
+
+
             <section id="gallery" class="gallery-section section bg-gray-50">
+
                 <div class="container max-w-7xl mx-auto px-4">
+
                     <div class="section-header">
+
                         <h2 class="section-title">Gallery</h2>
+
                         <p class="section-subtitle">Explore our events, achievements, and campus life</p>
+
                     </div>
 
-                    <!-- Featured Video -->
+
+
                     <div class="featured-video">
-                        <!-- Placeholder iframe due to static URL. Added height/width to prevent CLS -->
+
                         <iframe width="853" height="480" src="https://www.youtube.com/embed/HPiSuT-ubLI"
+
                             title="GM University Davanagere, Vice-Chancellor - Dr SR Shankapal Sir Interview about GM UNIVERSITY."
+
                             frameborder="0"
+
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+
                             referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
                     </div>
 
-                    <!-- Video Grid -->
+
+
                     <h3 class="sub-heading">GMU <i class="fas fa-video"></i> videos</h3>
+
                     <div class="video-grid">
+
                         <iframe width="853" height="480" src="https://www.youtube.com/embed/ybTbIlKgWlY"
+
                             title="Join GM University – Admissions 2025 Now Open!" frameborder="0"
+
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+
                             referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
                         <iframe width="853" height="480" src="https://www.youtube.com/embed/kwIRPM-UlQQ"
+
                             title="GM University : ಮಧ್ಯ ಕರ್ನಾಟಕದಲ್ಲಿ ಶೈಕ್ಷಣಿಕ ಮುಕುಟ ಈ GMU | Golden Life | @newsfirstkannada"
+
                             frameborder="0"
+
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+
                             referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
                         <iframe width="853" height="480" src="https://www.youtube.com/embed/leiMlvSX1V8"
+
                             title="GM Institute of Technology, Davangere" frameborder="0"
+
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+
                             referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
                     </div>
 
-                    <!-- Photo Grid -->
+
+
                     <h3 class="sub-heading">GMU <i class="fas fa-camera"></i> Photos</h3>
+
                     <div class="photo-grid">
-                        <!-- Placeholders for images -->
+
                         <img src="static/events/event1.jpg" alt="Event 1" onclick="openLightbox(this)">
+
                         <img src="static/events/event.2.jpg" alt="Event 2" onclick="openLightbox(this)">
+
                         <img src="static/events/event.3.jpg" alt="Event 3" onclick="openLightbox(this)">
+
                         <img src="static/events/event.4.jpg" alt="Event 4" onclick="openLightbox(this)">
+
                         <img src="static/events/event.5.jpg" alt="Event 5" onclick="openLightbox(this)">
+
                         <img src="static/events/event.6.jpg" alt="Event 6" onclick="openLightbox(this)">
+
                         <img src="static/events/event.7.jpg" alt="Event 7" onclick="openLightbox(this)">
+
                         <img src="static/events/event.8.jpg" alt="Event 8" onclick="openLightbox(this)">
+
                         <img src="static/events/event.9.jpg" alt="Event 9" onclick="openLightbox(this)">
+
                         <img src="static/events/event.10.jpg" alt="Event 10" onclick="openLightbox(this)">
+
                         <img src="static/events/event.11.jpg" alt="Event 11" onclick="openLightbox(this)">
+
                         <img src="static/events/event.12.jpg" alt="Event 12" onclick="openLightbox(this)">
+
                         <img src="static/events/event.13.jpg" alt="Event 13" onclick="openLightbox(this)">
+
                         <img src="static/events/event.14.jpg" alt="Event 14" onclick="openLightbox(this)">
+
                         <img src="static/events/event.15.jpg" alt="Event 15" onclick="openLightbox(this)">
+
                         <img src="static/events/event.16.jpg" alt="Event 16" onclick="openLightbox(this)">
+
                         <img src="static/events/event.17.jpg" alt="Event 17" onclick="openLightbox(this)">
+
                         <img src="static/events/event.18.jpg" alt="Event 18" onclick="openLightbox(this)">
+
                         <img src="static/events/event.19.jpg" alt="Event 19" onclick="openLightbox(this)">
+
                         <img src="static/events/event.20.jpg" alt="Event 20" onclick="openLightbox(this)">
+
                         <img src="static/events/event.21.jpg" alt="Event 21" onclick="openLightbox(this)">
+
                     </div>
-                </div>
-    <!-- Achievements Section -->
-            <section id="achievements" class="section achievements-section">
-                <div class="section-header">
-                    <h2 class="section-title section-achievements">Latest Achievements</h2>
-                    <p class="section-subtitle">Celebrating milestones of excellence</p>
+
                 </div>
 
-                <!-- This div uses custom CSS for the continuous scrolling effect (see style block) -->
+    <section id="achievements" class="section achievements-section">
+
+                <div class="section-header">
+
+                    <h2 class="section-title section-achievements">Latest Achievements</h2>
+
+                    <p class="section-subtitle">Celebrating milestones of excellence</p>
+
+                </div>
+
+
+
                 <div class="achievements-slider">
+
                     <div class="slider-track">
 
-                        <!-- Achievement Cards (duplicated in HTML for seamless looping CSS effect) -->
-                        <!-- Group 1 -->
+
+
                         <div class="achievement-card">
+
                             <img src="static/images/achievement1.jpg"
+
                                 onerror="this.onerror=null; this.src='https://placehold.co/300x180/FF7F50/ffffff?text=Hackathon+1'"
+
                                 alt="Achievement 1">
+
                             <h3>🏆 Hackathon Winner</h3>
+
                             <p>🏆 Secured 2nd Place at Vyoma Hackathon – TechSurge 2K25. Developed a Generative AI solution
+
                                 for health and well-being. 💡⚡</p>
+
                         </div>
 
+
+
                         <div class="achievement-card">
+
                             <img src="static/images/achievement2.jpg"
+
                                 onerror="this.onerror=null; this.src='https://placehold.co/300x180/FF7F50/ffffff?text=SIH+Winners'"
+
                                 alt="Achievement 2">
+
                             <h3>🏆 SIH Grand Finale 2K24</h3>
+
                             <p>SIH grand finale 2k24 winners - with ministry of Education and AICTE Delegates.</p>
+
                         </div>
 
+
+
                         <div class="achievement-card">
+
                             <img src="static/images/achievement3.jpg"
+
                                 onerror="this.onerror=null; this.src='https://placehold.co/300x180/FF7F50/ffffff?text=Luxoft+Placement'"
+
                                 alt="Achievement 3">
+
                             <h3>LUXOFT Company Placement</h3>
+
                             <p>Pavan varahad, Suhail Khan, and Rishi G - placed at LUXOFT DFC TECHNOLOGIES, BENGALURU.</p>
+
                         </div>
 
+
+
                         <div class="achievement-card">
+
                             <img src="static/images/achievement4.jpg"
+
                                 onerror="this.onerror=null; this.src='https://placehold.co/300x180/FF7F50/ffffff?text=Emerge+2025'"
+
                                 alt="Achievement 4">
+
                             <h3>🏆 1st Place - Emerge 2025</h3>
+
                             <p>🏆 1st Place | State-Level Hackathon – Emerge 2025 📍 Jain Institute of Technology,
+
                                 Davangere.</p>
+
                         </div>
 
+
+
                         <div class="achievement-card">
+
                             <img src="static/images/achievement5.jpg"
+
                                 onerror="this.onerror=null; this.src='https://placehold.co/300x180/FF7F50/ffffff?text=Srishti+Hackathon'"
+
                                 alt="Achievement 5">
+
                             <h3>🏆 Srishti Hackathon</h3>
+
                             <p>Proud to share that our team secured 2nd place out of 105 teams at the Srishti 36-Hour
+
                                 Hackathon hosted by Acharya Institute of Technology, Bangalore🏆.</p>
+
                         </div>
 
-                        <!-- Group 2 (Duplicate for smooth CSS loop) -->
+
+
                         <div class="achievement-card">
+
                             <img src="static/images/achievement1.jpg"
+
                                 onerror="this.onerror=null; this.src='https://placehold.co/300x180/FF7F50/ffffff?text=Hackathon+1'"
+
                                 alt="Achievement 1">
+
                             <h3>🏆 Hackathon Winner (Copy)</h3>
+
                             <p>🏆 Secured 2nd Place at Vyoma Hackathon – TechSurge 2K25. Developed a Generative AI solution
+
                                 for health and well-being. 💡⚡</p>
+
                         </div>
 
+
+
                         <div class="achievement-card">
+
                             <img src="static/images/achievement2.jpg"
+
                                 onerror="this.onerror=null; this.src='https://placehold.co/300x180/FF7F50/ffffff?text=SIH+Winners'"
+
                                 alt="Achievement 2">
+
                             <h3>🏆 SIH Grand Finale 2K24 (Copy)</h3>
+
                             <p>SIH grand finale 2k24 winners - with ministry of Education and AICTE Delegates.</p>
+
                         </div>
 
+
+
                         <div class="achievement-card">
+
                             <img src="static/images/achievement3.jpg"
+
                                 onerror="this.onerror=null; this.src='https://placehold.co/300x180/FF7F50/ffffff?text=Luxoft+Placement'"
+
                                 alt="Achievement 3">
+
                             <h3>LUXOFT Company Placement (Copy)</h3>
+
                             <p>Pavan varahad, Suhail Khan, and Rishi G - placed at LUXOFT DFC TECHNOLOGIES, BENGALURU.</p>
+
                         </div>
 
+
+
                         <div class="achievement-card">
+
                             <img src="static/images/achievement4.jpg"
+
                                 onerror="this.onerror=null; this.src='https://placehold.co/300x180/FF7F50/ffffff?text=Emerge+2025'"
+
                                 alt="Achievement 4">
+
                             <h3>🏆 1st Place - Emerge 2025 (Copy)</h3>
+
                             <p>🏆 1st Place | State-Level Hackathon – Emerge 2025 📍 Jain Institute of Technology,
+
                                 Davangere.</p>
+
                         </div>
+
+
 
                         <div class="achievement-card">
+
                             <img src="static/images/achievement5.jpg"
+
                                 onerror="this.onerror=null; this.src='https://placehold.co/300x180/FF7F50/ffffff?text=Srishti+Hackathon'"
+
                                 alt="Achievement 5">
+
                             <h3>🏆 Srishti Hackathon (Copy)</h3>
+
                             <p>Proud to share that our team secured 2nd place out of 105 teams at the Srishti 36-Hour
+
                                 Hackathon hosted by Acharya Institute of Technology, Bangalore🏆.</p>
+
                         </div>
+
                     </div>
+
                 </div>
-            </section>
-                <!-- Lightbox Modal -->
-                <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-                    <img id="lightbox-img" class="lightbox-img" src="">
-                </div>
+
             </section>
 
-            <!-- 5. Key Administrative and Achievement Sections -->
+                <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+
+                    <img id="lightbox-img" class="lightbox-img" src="">
+
+                </div>
+
+            </section>
+
+
+
             <section id="wedges" class="section section-light">
+
                 <div class="academic-card bg-gradient-to-tr from-blue-50 to-blue-100 hover:from-blue-100 hover:to-blue-200 backdrop-blur-md border-none shadow-md">
+
   <i class="fas fa-book-open text-4xl text-blue-600 mb-3"></i>
+
   <h3 class="text-xl font-bold text-gray-800">Learning & Resources</h3>
+
   <p class="text-gray-600 text-sm">Access materials, tools, and lectures for Cybersecurity, Digital Forensics, and IS.</p>
+
   <a href="#resources" class="text-blue-600 font-semibold hover:underline mt-3 inline-block">Access Now</a>
+
 </div>
 
+
+
                 <div class="container mx-auto px-4 max-w-7xl text-center">
+
                     <h2 class="section-title">Quick access</h2>
+
                     <p class="text-lg text-gray-700 mb-12">Quick access to essential academic and administrative
+
                         information.</p>
 
+
+
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        <!-- about -->
+
                         <div class="academic-card hover:shadow-xl p-5 border-t-8 border-blue-500">
+
                             <i class="fas fa-info-circle text-3xl text-blue-500 mb-3"></i>
+
                             <h3 class="font-bold text-xl mb-2 text-[--primary-color]">About Us</h3>
+
                             <p class="text-sm text-gray-600">Learn about our department's history, vision, mission, and the
+
                                 cutting-edge programs we offer in Cybersecurity.</p>
+
                             <a href="#about" class="text-sm text-blue-500 hover:underline mt-3 block">Learn More</a>
+
                         </div>
 
-                        <!-- Program Study Materials -->
+
+
                         <div class="academic-card hover:shadow-xl p-5 border-t-8 border-purple-500">
+
                             <i class="fas fa-laptop-code text-3xl text-purple-500 mb-3"></i>
+
                             <h3 class="font-bold text-xl mb-2 text-[--primary-color]">Programs</h3>
+
                             <p class="text-sm text-gray-600">Explore our B.Tech., M.Tech., and Ph.D. programs specializing
+
                                 in Networks, Cybersecurity, and Digital Forensics.</p>
+
                             <a href="#programs" class="text-sm text-purple-500 hover:underline mt-3 block">View Programs</a>
+
                         </div>
 
-                        <!-- Learning and Resources -->
+
+
                         <div class="academic-card hover:shadow-xl p-5 border-t-8 border-orange-500">
+
                             <i class="fas fa-book-open text-3xl text-orange-500 mb-3"></i>
+
                             <h3 class="font-bold text-xl mb-2 text-[--primary-color]">Learning & Resources</h3>
+
                             <p class="text-sm text-gray-600">Access lecture notes, lab manuals, and online resources for all
+
                                 courses including Cybersecurity, Digital Forensics, and Information Security.</p>
+
                             <a href="#student-corner" class="text-sm text-orange-500 hover:underline mt-3 block">Student
+
                                 Corner</a>
+
                         </div>
 
-                        <!-- Faculty & Alumni -->
+
+
                         <div class="academic-card hover:shadow-xl p-5 border-t-8 border-cyan-500">
+
                             <i class="fas fa-chalkboard-teacher text-3xl text-cyan-500 mb-3"></i>
+
                             <h3 class="font-bold text-xl mb-2 text-[--primary-color]">Faculty Directory</h3>
+
                             <p class="text-sm text-gray-600">Details of our professors and technical staff, their
+
                                 specializations in Cybersecurity, Digital Forensics, and Information Security.</p>
+
                             <a href="#faculty" class="text-sm text-cyan-500 hover:underline mt-3 block">Meet Our Team</a>
+
                         </div>
 
-                        <!-- BOS (Board of Studies) -->
+
+
                         <div id="bos-iqac" class="academic-card hover:shadow-xl p-5 border-t-8 border-indigo-500">
+
                             <i class="fas fa-users-cog text-3xl text-indigo-500 mb-3"></i>
+
                             <h3 class="font-bold text-xl mb-2 text-[--primary-color]">Board of Studies (BOS)</h3>
+
                             <p class="text-sm text-gray-600">Access meeting minutes, curriculum development plans, and
+
                                 external member details of the BOS.</p>
+
                             <a href="#iqac" class="text-sm text-indigo-500 hover:underline mt-3 block">View BOS
+
                                 Documents</a>
+
                         </div>
 
-                        <!-- Research and Publications -->
+
+
                         <div class="academic-card hover:shadow-xl p-5 border-t-8 border-red-500">
+
                             <i class="fas fa-scroll text-3xl text-red-500 mb-3"></i>
+
                             <h3 class="font-bold text-xl mb-2 text-[--primary-color]">Research & Publications</h3>
+
                             <p class="text-sm text-gray-600">List of published papers in journals (e.g., Nature, IEEE),
+
                                 ongoing projects, and specialization labs.</p>
+
                             <a href="#research" class="text-sm text-red-500 hover:underline mt-3 block">Research Portal</a>
+
                         </div>
 
-                        <!-- Student Projects -->
+
+
                         <div class="academic-card hover:shadow-xl p-5 border-t-8 border-yellow-500">
+
                             <i class="fas fa-project-diagram text-3xl text-yellow-500 mb-3"></i>
+
                             <h3 class="font-bold text-xl mb-2 text-[--primary-color]">Student Projects</h3>
+
                             <p class="text-sm text-gray-600">Showcase of student projects in Cybersecurity, Digital
+
                                 Forensics, and Information Security with links to GitHub repositories.</p>
+
                             <a href="#projects" class="text-sm text-yellow-500 hover:underline mt-3 block">View Projects</a>
+
                         </div>
 
-                        <!-- IQAC (Internal Quality Assurance Cell) -->
+
+
                         <div class="academic-card hover:shadow-xl p-5 border-t-8 border-yellow-500">
+
                             <i class="fas fa-check-circle text-3xl text-yellow-600 mb-3"></i>
+
                             <h3 class="font-bold text-xl mb-2 text-[--primary-color]">IQAC</h3>
+
                             <p class="text-sm text-gray-600">Department's commitment to quality assurance, institutional
+
                                 reviews, and data-driven improvement strategies.</p>
+
                             <a href="#iqac" class="text-sm text-yellow-600 hover:underline mt-3 block">IQAC Reports</a>
+
                         </div>
 
-                        <!-- Faculty Achievements -->
+
+
                         <div id="achievements" class="academic-card hover:shadow-xl p-5 border-t-8 border-pink-500">
+
                             <i class="fas fa-trophy text-3xl text-pink-500 mb-3"></i>
+
                             <h3 class="font-bold text-xl mb-2 text-[--primary-color]">Faculty Achievements</h3>
+
                             <p class="text-sm text-gray-600">Recognizing excellence in teaching, research grants (e.g.,
+
                                 NSF/DST), patents, and professional awards.</p>
+
                             <a href="faculty-achievements" class="text-sm text-pink-500 hover:underline mt-3 block">View
+
                                 Achievements</a>
+
                         </div>
 
-                        <!-- Placements & Internships -->
+
+
                         <div class="academic-card hover:shadow-xl p-5 border-t-8 border-purple-500">
+
                             <i class="fas fa-briefcase text-3xl text-purple-500 mb-3"></i>
+
                             <h3 class="font-bold text-xl mb-2 text-[--primary-color]">Placements & Internships</h3>
+
                             <p class="text-sm text-gray-600">Statistics on student internships, placement records, and
+
                                 industry partnerships with companies.</p>
+
                             <a href="#placements" class="text-sm text-purple-500 hover:underline mt-3 block">Placement
+
                                 Cell</a>
+
                         </div>
 
-                        <!-- student achievements -->
+
+
                         <div class="academic-card hover:shadow-xl p-5 border-t-8 border-pink-500">
+
                             <i class="fas fa-award text-3xl text-pink-500 mb-3"></i>
+
                             <h3 class="font-bold text-xl mb-2 text-[--primary-color]">Student Achievements</h3>
+
                             <p class="text-sm text-gray-600">Highlighting student awards, scholarships, hackathon wins, and
+
                                 notable accomplishments in Department of CSE-Cybersecurity/Information Security.</p>
+
                             <a href="#achievements" class="text-sm text-pink-500 hover:underline mt-3 block">View
+
                                 Achievements</a>
+
                         </div>
 
-                        <!-- Alumni Network -->
+
+
                         <div class="academic-card hover:shadow-xl p-5 border-t-8 border-teal-500">
+
                             <i class="fas fa-user-friends text-3xl text-teal-500 mb-3"></i>
+
                             <h3 class="font-bold text-xl mb-2 text-[--primary-color]">Alumni Network</h3>
+
                             <p class="text-sm text-gray-600">Connect with Cybersecurity analysts working at top firms
+
                                 (FAANG, etc.). Update your profile and mentor students.</p>
+
                             <a href="#alumni" class="text-sm text-teal-500 hover:underline mt-3 block">Alumni Portal</a>
+
                         </div>
 
-                        <!-- Admissions -->
+
+
                         <div class="academic-card hover:shadow-xl p-5 border-t-8 border-green-500">
+
                             <i class="fas fa-clipboard-list text-3xl text-green-500 mb-3"></i>
+
                             <h3 class="font-bold text-xl mb-2 text-[--primary-color]">Admissions</h3>
+
                             <p class="text-sm text-gray-600">Find eligibility criteria, application process, and deadlines
+
                                 for all B.Tech., M.Tech., and Ph.D. programs.</p>
+
                             <a href="#admissions" class="text-sm text-green-500 hover:underline mt-3 block">Apply Now</a>
+
                         </div>
-                         <!-- Course Doucment -->
-                        <div class="academic-card hover:shadow-xl p-5 border-t-8 border-red-500">
+
+                         <div class="academic-card hover:shadow-xl p-5 border-t-8 border-red-500">
+
                             <i class="fas fa-clipboard-list text-3xl text-red-500 mb-3"></i>
-                            <h3 class="font-bold text-xl mb-2 text-[--primary-color]">Course Document</h3>
+
+                            <h3 class="font-bold text-xl mb-2 text-[--primary-color]">Course Document of CY and IY</h3>
+
                             <p class="text-sm text-gray-600">Find Course documents.</p>
+
                             <a href="#course-documents" class="text-sm text-red-500 hover:underline mt-3 block">Click for Course Document</a>
+
                         </div>
+
                     </div>
+
                 </div>
+
             </section>
 
-            <!-- About Section -->
+
+
             <section id="about" class="section about-section">
+
                 <div class="container max-w-7xl mx-auto px-4">
+
                     <div class="section-header">
+
                         <h2 class="section-title">About the Department</h2>
+
                         <p class="section-subtitle">Leading the future of security-driven innovation</p>
+
                     </div>
+
+
 
                     <div class="about-grid">
-                        <!-- Left side: Text -->
+
                         <div class="about-content">
+
                             <p>
+
                                 The Department of CS-Cyber security and Department Of CS- Information Security at GM University is at the
+
                                 forefront of
+
                                 network analytics, network security, and topologies, dedicated to advancing
+
                                 the field of cybersecurity through innovative research and quality
+
                                 education. Established in 2024, our department has quickly become a
+
                                 center of excellence for cybersecurity education and research.
+
                             </p>
+
+
 
                             <p>
+
                                 We offer comprehensive programs that blend theoretical foundations
+
                                 with practical applications, preparing students for careers in the
+
                                 rapidly evolving field of cybersecurity. Our curriculum is designed in
+
                                 collaboration with industry experts to ensure relevance and
+
                                 employability.
+
                             </p>
+
                         </div>
 
-                        <!-- Right side: Image -->
+
+
                         <div class="about-image">
+
                             <img src="static/images/gmu.jpeg"
+
                                 onerror="this.onerror=null; this.src='https://placehold.co/400x300/00458B/ffffff?text=GMU+Campus'"
+
                                 alt="GM University Campus">
+
                         </div>
+
                     </div>
+
                 </div>
+
             </section>
 
-            <!-- HoD Message - The primary section for background and top/bottom padding -->
+
+
             <section class="hod-message section">
 
-                <!-- Standard container for centralizing content on large screens (Tailwind classes) -->
+
+
                 <div class="container max-w-7xl mx-auto px-4">
 
-                    <!-- Card Container - Uses your custom CSS for layout, gap, background, and shadow -->
+
+
                     <div class="hod-content">
 
-                        <!-- HoD Photo Section -->
+
+
                         <div class="hod-image w-full sm:w-1/3 flex flex-col items-center">
+
                             <img src="static/images/faculty/Picture2.jpg" alt="Head of Department"
+
                                 onerror="this.onerror=null;this.src='https://placehold.co/120x120/9ca3af/ffffff?text=Aruna+Kumar+B+T';">
+
                             <p class="text-lg font-semibold text-gray-800">Dr. Aruna Kumar B T</p>
+
                             <p class="text-sm text-gray-600">Head of Department,CS-Cyber Security And CS-Information Security</p>
+
                         </div>
 
-                        <!-- Message Content Section -->
+
+
                         <div class="hod-text w-full sm:w-2/3">
 
-                            <!-- Title updated to use h2 and styled via CSS -->
+
+
                             <h2>Message from Head of Department</h2>
 
+
+
                             <blockquote>
+
                                 <p>
+
                                     Dear Students and Aspirants, It gives me great pleasure to welcome you to the
+
                                     Undergraduate Program in Cybersecurity and Information Security. In today’s digital era,
+
                                     information is the most valuable asset, and securing it has become a global priority.
+
                                     From critical infrastructure and financial systems to personal data and national
+
                                     defense, the demand for skilled cybersecurity professionals is growing at an
+
                                     unprecedented rate. Our program is designed to blend strong engineering foundations with
+
                                     specialized knowledge in **cyber defense**, **cryptography**, **digital forensics**,
+
                                     **ethical hacking**, and **security management**. With a curriculum that is both
+
                                     industry-oriented and research-driven, we aim to prepare graduates who can face
+
                                     real-world security challenges with confidence and innovation. At GM University, we
+
                                     emphasize not only technical expertise but also ethical responsibility, problem-solving
+
                                     skills, and lifelong learning—qualities that are essential for cybersecurity
+
                                     professionals in a rapidly changing technological landscape. Students will benefit from
+
                                     state-of-the-art laboratories, hands-on projects, collaborations with industry, and
+
                                     opportunities to engage in internships and certifications aligned with global standards.
+
                                     We envision our graduates as leaders, innovators, and protectors of the digital world,
+
                                     contributing to a safer cyberspace for individuals, businesses, and nations. I invite
+
                                     you to join us on this exciting journey of discovery, innovation, and excellence in
+
                                     Cyber and Information Security. Together, let us build a secure digital future.
+
                                 </p>
+
                             </blockquote>
+
+
 
                             
 
+
+
                         </div>
+
                     </div>
+
             </section>
 
-            <!-- Programs Section -->
+
+
             <section id="programs" class="programs-section section bg-gray-50">
+
                 <div class="container max-w-7xl mx-auto px-4">
+
                     <div class="section-header">
+
                         <h2 class="section-title">Our Programs</h2>
+
                         <p class="section-subtitle">Cutting-edge curricula designed for the cybersecurity workforce</p>
+
                     </div>
+
                     <div class="grid md:grid-cols-2 gap-10">
 
-                        <!-- Program Card 1: B.Tech in Cybersecurity (BCS) -->
+
+
                         <div class="bg-gray-50 p-8 rounded-xl shadow-lg border-t-8"
+
                             style="border-top-color: var(--primary-color);">
+
                             <div class="text-5xl mb-4" style="color: var(--primary-color);"><i
+
                                     class="fas fa-shield-alt"></i></div>
+
                             <h3 class="text-2xl font-bold mb-3 text-gray-900">B.Tech CS-Cyber Security </h3>
+
                             <p class="text-gray-700 leading-relaxed mb-4">
+
                                 The Cyber Security program is designed to prepare graduates with the knowledge, skills, and
+
                                 professional values required to address the complex challenges of securing digital
+
                                 infrastructure. With a strong foundation in computer science, networking, and cryptography,
+
                                 the program equips students to identify vulnerabilities, mitigate risks, and develop robust
+
                                 security solutions against evolving cyber threats. Emphasis is placed on hands-on training,
+
                                 industry-relevant tools, and exposure to real-world attack and defense mechanisms. Students
+
                                 are encouraged to apply their knowledge to protect national and organizational assets,
+
                                 ensuring resilience in critical systems and services. The curriculum integrates research,
+
                                 innovation, and ethical practices, fostering responsible professionals who can contribute to
+
                                 society and industry alike. By preparing students for higher education, advanced
+
                                 certifications, and lifelong learning, the program nurtures leaders and experts capable of
+
                                 strengthening cyber defense globally and addressing the growing need for security
+
                                 professionals
+
                             </p>
+
                         </div>
 
-                        <!-- Program Card 2: B.Tech in IoT with AI -->
+
+
                         <div class="bg-gray-50 p-8 rounded-xl shadow-lg border-t-8"
+
                             style="border-top-color: var(--secondary-color);">
+
                             <div class="text-5xl mb-4" style="color: var(--secondary-color);"><i
+
                                     class="fas fa-microchip"></i></div>
+
                             <h3 class="text-2xl font-bold mb-3 text-gray-900">B.Tech CS-Information Security</h3>
+
                             <p class="text-gray-700 leading-relaxed mb-4">
+
                                 The Information Security program is structured to develop graduates with expertise in
+
                                 securing data, applications, and communication systems across organizational and societal
+
                                 contexts. It provides a balance of theoretical foundations and practical skills in areas
+
                                 such as encryption, access control, compliance, governance, and risk management. Students
+
                                 gain hands-on experience with advanced tools and frameworks, enabling them to design and
+
                                 implement effective strategies for data protection and trust assurance. The program
+
                                 emphasizes the ethical, legal, and professional aspects of security, ensuring graduates
+
                                 understand the responsibilities of safeguarding sensitive information. Through
+
                                 research-driven learning and innovation, students are encouraged to explore new frontiers in
+
                                 areas such as cloud security, digital forensics, and secure software development. The
+
                                 curriculum also promotes leadership, collaboration, and continuous learning, preparing
+
                                 graduates for careers in academia, industry, or government. Ultimately, the program develops
+
                                 skilled professionals who contribute to secure digital ecosystems locally and globally
+
                             </p>
 
+
+
                         </div>
+
                     </div>
+
                 </div>
+
             </section>
+
 <section id="course-documents" class="course-docs-section">
+
             <div class="container">
-                <h1>📚 Course Documents</h1>
-                <h2>Select a course document to view:</h2>
+
+                <h2 class="section-title">📚 Course Documents</h2>
+
+                <p class="section-subtitle">Select a course document to view:</p>
+
                 <ul class="course-docs-list">
+
                     <li>
-                        <a href="https://gmu.ac.in/fetug" target="_blank">🔗 Course Syllabus</a>
+
+                        <a href="#" target="_blank">🔗 Course Document of CY and IY</a>
+
                     </li>
+
                     
+
                 </ul>
+
             </div>
+
         </section>
 
-            <!-- Faculty Section -->
+
+
             <section id="faculty" class="faculty section">
+
                 <div class="container max-w-7xl mx-auto px-4">
+
                     <div class="section-header">
+
                         <h2 class="section-title">Faculty Profile</h2>
+
                         <p class="section-subtitle">Meet our distinguished faculty members</p>
+
                     </div>
+
+
 
                     <div class="faculty-grid">
-                        <!-- Faculty Card 1 (HoD/Faculty 1) -->
+
                         <div class="faculty-card">
+
                             <img src="static/images/faculty/Picture2.jpg"
+
                                 onerror="this.onerror=null; this.src='https://placehold.co/120x120/FF7F50/ffffff?text=AKBT'"
+
                                 alt="Prof. Arunakumar B T">
+
                             <h3>Dr. Aruna Kumar B T</h3>
+
                             <p class="position">Associate Professor & HoD</p>
+
                             <div class="download-section">
+
                                 <a href="static/pdf/arun.pdf" download class="download-btn">
+
                                     📥 View Profile
+
                                 </a>
+
                             </div>
+
                         </div>
 
-                        <!-- Faculty Card 2 -->
+
+
                         <div class="faculty-card">
+
                             <img src="static/images/faculty/Picture1.jpg"
+
                                 onerror="this.onerror=null; this.src='https://placehold.co/120x120/00458B/ffffff?text=SM'"
+
                                 alt="Dr.K Prakash">
+
                             <h3>Dr. K Prakash</h3>
+
                             <p class="position">Professor, Research & Project Co-Ordinator</p>
+
                             <div class="download-section">
+
                                 <a href="static/pdf/prakash.pdf" download class="download-btn">
+
                                     📥 View Profile
+
                                 </a>
+
                             </div>
+
                         </div>
 
-                        <!-- Faculty Card 3 -->
+
+
                         <div class="faculty-card">
+
                             <img src="static/images/faculty/Picture3.jpg"
+
                                 onerror="this.onerror=null; this.src='https://placehold.co/120x120/00458B/ffffff?text=IK'"
+
                                 alt="kotreshi S N">
+
                             <h3>Asst Prof. Kotreshi S N</h3>
+
                             <p class="position">Assistant Professor, Placement</p>
+
                             <div class="download-section">
+
                                 <a href="static/pdf/kotreshi.pdf" download class="download-btn">
+
                                     📥 View Profile
+
                                 </a>
+
                             </div>
+
                         </div>
 
-                        <!-- Faculty Card 4 -->
+
+
                         <div class="faculty-card">
+
                             <img src="static/images/faculty/Picture4.jpg"
+
                                 onerror="this.onerror=null; this.src='https://placehold.co/120x120/00458B/ffffff?text=AG'"
+
                                 alt="Rachana P G">
+
                             <h3>Dr.Rachana P G</h3>
+
                             <p class="position">IQAC & Placement Co-ordinator</p>
+
                             <div class="download-section">
+
                                 <a href="static/pdf/rachana.pdf" download class="download-btn">
+
                                     📥 View Profile
+
                                 </a>
+
                             </div>
+
                         </div>
 
-                        <!-- Faculty Card 5 -->
+
+
                         <div class="faculty-card">
+
                             <img src="static/images/faculty/Picture5.jpg"
+
                                 onerror="this.onerror=null; this.src='https://placehold.co/120x120/00458B/ffffff?text=RA'"
+
                                 alt="Kumar S">
+
                             <h3>Asst Prof. Kumar S</h3>
+
                             <p class="position">Assistant Professor, EMS,DQAC</p>
+
                             <div class="download-section">
+
                                 <a href="static/pdf/kumar.pdf" download class="download-btn">
+
                                     📥 View Profile
+
                                 </a>
+
                             </div>
+
                         </div>
 
-                        <!-- Faculty Card 6 -->
+
+
                         <div class="faculty-card">
+
                             <img src="static/images/faculty/Picture6.jpg"
+
                                 onerror="this.onerror=null; this.src='https://placehold.co/120x120/00458B/ffffff?text=YM'"
+
                                 alt="Nayana m R">
+
                             <h3>Asst Prof. Nayana M R</h3>
+
                             <p class="position">Assistant Professor, Academic coordinator</p>
+
                             <div class="download-section">
+
                                 <a href="static/pdf/nayana.pdf" download class="download-btn">
+
                                     📥 View Profile
+
                                 </a>
+
                             </div>
+
                         </div>
 
-                        <!-- Faculty Card 7 -->
+
+
                         <div class="faculty-card">
+
                             <img src="static/images/faculty/raskhita.jpg"
+
                                 onerror="this.onerror=null; this.src='https://placehold.co/120x120/00458B/ffffff?text=BA'"
+
                                 alt="Rakshita G B">
+
                             <h3>Tutor Rakshitha G B</h3>
+
                             <p class="position">Tutor, Leap Co-Ordinator</p>
+
                             <div class="download-section">
+
                                 <a href="static/pdf/rakshita.pdf" download class="download-btn">
+
                                     📥 View Profile
+
                                 </a>
+
                             </div>
+
                         </div>
 
-                        <!-- Faculty Card 8 -->
+
+
                         <div class="faculty-card">
+
                             <img src="static/images/faculty/Picture8.jpg"
+
                                 onerror="this.onerror=null; this.src='https://placehold.co/120x120/00458B/ffffff?text=BH'"
+
                                 alt="Swati A">
+
                             <h3>Tutor Swathi A</h3>
+
                             <p class="position">Tutor, IA & Sports Co-Ordinator</p>
+
                             <div class="download-section">
+
                                 <a href="static/pdf/swati.pdf" download class="download-btn">
+
                                     📥 View Profile
+
                                 </a>
+
                             </div>
+
                         </div>
 
-                        <!-- Faculty Card 9 -->
+
+
                         <div class="faculty-card">
+
                             <img src="static/images/faculty/shweta.png"
+
                                 onerror="this.onerror=null; this.src='https://placehold.co/120x120/00458B/ffffff?text=JS'"
+
                                 alt=" Shweta D S">
+
                             <h3>Tutor Shwetha D S</h3>
+
                             <p class="position">Tutor,Admission & NSS Co-ordinator</p>
+
                             <div class="download-section">
+
                                 <a href="static/pdf/shweta.pdf" download class="download-btn">
+
                                     📥 View Profile
+
                                 </a>
+
                             </div>
+
                         </div>
 
-                        <!-- Faculty Card 10 -->
+
+
                         <div class="faculty-card">
+
                             <img src="static/images/faculty/pavan.png"
+
                                 onerror="this.onerror=null; this.src='https://placehold.co/120x120/00458B/ffffff?text=MP'"
+
                                 alt="Pavan Kumar">
+
                             <h3>Tutor Pavan Kumar N T</h3>
+
                             <p class="position">Tutor, Cultural and Sports Co-ordinator</p>
+
                             <div class="download-section">
+
                                 <a href="static/pdf/pavan.pdf" download class="download-btn">
+
                                     📥 View Profile
+
                                 </a>
+
                             </div>
+
                         </div>
+
+
+
 
 
                     </div>
+
                 </div>
+
         </div>
+
         </section>
 
-        <!-- Student Corner Section -->
+
+
         <section id="student-corner" class="section student-corner bg-gray-50">
+
             <div class="container max-w-7xl mx-auto px-4">
+
                 <div class="section-header">
+
                     <h2 class="section-title">Student Corner</h2>
+
                     <p class="section-subtitle">A hub for collaboration, resources, and innovation</p>
+
                 </div>
+
+
 
                 <div class="corner-grid">
-                    <!-- Peer Learning -->
+
                     <div class="corner-card">
+
                         <img src="static/images/students.jpeg"
+
                             onerror="this.onerror=null; this.src='https://placehold.co/400x200/FF7F50/ffffff?text=Peer+Learning'"
+
                             alt="Peer Learning">
+
                         <h3>Students Research and 🤝 Peer Learning</h3>
+
                         <p>Join study groups, collaborate on projects, and share knowledge with fellow students. Build
+
                             stronger understanding through teamwork and discussions.</p>
+
                         <a href="https://leap.gmu.ac.in/leap/" class="corner-link">Explore Groups →</a>
+
                     </div>
 
-                    <!-- Open Source Community -->
+
+
                     <div class="corner-card">
+
                         <img src="static/images/open source.jpeg"
+
                             onerror="this.onerror=null; this.src='https://placehold.co/400x200/00458B/ffffff?text=Open+Source'"
+
                             alt="Open Source">
+
                         <h3>🌐 Open Source Community</h3>
+
                         <p>Contribute to open-source projects, explore GitHub repositories, and become part of the global
+
                             data science developer network.</p>
+
                         <a href="https://leap.gmu.ac.in/leap/students/pbl.php" class="corner-link">View Projects →</a>
+
                     </div>
 
-                    <!-- Program Study Material -->
+
+
                     <div class="corner-card">
+
                         <img src="static/images/peer learning.jpeg"
+
                             onerror="this.onerror=null; this.src='https://placehold.co/400x200/FF7F50/ffffff?text=Study+Material'"
+
                             alt="Study Material">
+
                         <h3>📚 Program Study Material</h3>
+
                         <p>Access curated notes, assignments, past exam papers, and additional learning resources to support
+
                             your academic journey.</p>
+
                         <a href="https://leap.gmu.ac.in/leap/students/program_study_material.php" class="corner-link">Get
+
                             Resources →</a>
+
                     </div>
+
                 </div>
+
             </div>
+
         </section>
 
-        <!-- Learning Resources -->
+
+
         <section class="resources section">
+
             <div class="container max-w-7xl mx-auto px-4">
+
                 <div class="section-header">
+
                     <h2 class="section-title">Learning Resources</h2>
+
                     <p class="section-subtitle">State-of-the-art facilities for comprehensive learning</p>
+
                 </div>
+
+
 
                 <div class="resources-grid">
+
                     <div class="resource-card">
+
                         <img src="static/images/lab.jpg"
+
                             onerror="this.onerror=null; this.src='https://placehold.co/400x200/00458B/ffffff?text=Lab'"
+
                             alt="Computer Lab">
+
                         <h3>Advanced Computing Labs</h3>
+
                         <p>High-performance computing systems with latest software tools for data analysis and machine
+
                             learning.</p>
+
                     </div>
 
+
+
                     <div class="resource-card">
+
                         <img src="static/images/library.jpg"
+
                             onerror="this.onerror=null; this.src='https://placehold.co/400x200/00458B/ffffff?text=Library'"
+
                             alt="Library">
+
                         <h3>Digital Library</h3>
+
                         <p>Access to premium journals, e-books, and online resources from leading publishers and platforms.
+
                         </p>
+
                     </div>
 
+
+
                     <div class="resource-card">
+
                         <img src="static/images/research.png"
+
                             onerror="this.onerror=null; this.src='https://placehold.co/400x200/00458B/ffffff?text=Research'"
+
                             alt="Research Center">
+
                         <h3>Research Centers</h3>
+
                         <p>Dedicated spaces for research projects and collaboration with industry partners.</p>
+
                     </div>
+
                 </div>
+
             </div>
+
         </section>
 
-        <!-- IQAC Section -->
+
+
         <section id="iqac" class="section iqac-section bg-gray-50">
+
             <div class="container max-w-7xl mx-auto px-4">
+
                 <div class="section-header">
+
                     <h2 class="section-title">IQAC</h2>
+
                     <p class="section-subtitle">Quality assurance and continuous improvement</p>
+
                 </div>
+
+
 
                 <div class="iqac-coordinator">
+
                     <div class="coordinator-info">
+
                         <img src="static/images/faculty/Picture4.jpg"
+
                             onerror="this.onerror=null; this.src='https://placehold.co/80x80/FF7F50/ffffff?text=AG'"
+
                             alt="IQAC Co-Coordinator">
+
                         <div class="coordinator-details">
+
                             <h3>Dr. Rachana P G</h3>
+
                             <p>IQAC & Placement Coordinator</p>
+
                         </div>
+
                     </div>
+
                 </div>
+
+
 
                 <div class="iqac-documents">
+
                     <div class="document-list">
-                        <!-- Document 1 -->
+
                         <div class="document-item">
+
                             <i class="fas fa-file-pdf"></i>
+
                             <div class="document-info">
+
                                 <h4>Academic Quality Report 2023-24</h4>
+
                                 <p>Comprehensive quality assessment report</p>
+
                                 <a href="#" class="download-link">Download PDF</a>
+
                             </div>
+
                         </div>
 
-                        <!-- Document 2 (Continued from original HTML) -->
+
+
                         <div class="document-item">
+
                             <i class="fas fa-file-pdf"></i>
+
                             <div class="document-info">
+
                                 <h4>Curriculum Review Minutes 2024</h4>
+
                                 <p>Details of the board meeting for syllabus updates</p>
+
                                 <a href="#" class="download-link">Download PDF</a>
+
                             </div>
+
                         </div>
 
-                        <!-- Document 3 (Placeholder for completeness) -->
+
+
                         <div class="document-item">
+
                             <i class="fas fa-file-pdf"></i>
+
                             <div class="document-info">
+
                                 <h4>Faculty Development Reports</h4>
+
                                 <p>Summary of FDPs attended by department faculty</p>
+
                                 <a href="#" class="download-link">Download PDF</a>
+
                             </div>
+
                         </div>
 
-                        <!-- Document 4 (Placeholder for completeness) -->
+
+
                         <div class="document-item">
+
                             <i class="fas fa-file-pdf"></i>
+
                             <div class="document-info">
+
                                 <h4>Student Feedback Analysis</h4>
+
                                 <p>Annual report on student feedback and action taken</p>
+
                                 <a href="#" class="download-link">Download PDF</a>
+
                             </div>
+
                         </div>
+
                     </div>
+
                 </div>
+
             </div>
+
         </section>
 
-        <!-- Hero/Banner Placeholder -->
+
+
         <header class="bg-blue-600 text-white py-20 text-center">
+
             <h1 class="text-5xl font-extrabold mb-4">Embrace the web through the lens of Cyberworld </h1>
+
             <p class="text-xl opacity-90">Advancing cybersecurity resilience through cutting-edge research, workforce
+
                 education, and strategic industry collaboration</p>
+
         </header>
 
-        <!-- Research Section -->
+
+
         <section id="research" class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+
             <div class="max-w-7xl mx-auto">
+
                 <div class="section-header">
+
                     <h2 class="section-title">Research & Publications</h2>
+
                     <p class="section-subtitle text-gray-600">Leading researches</p>
+
                 </div>
 
-                <!-- Research Coordinator -->
+
+
                 <div class="flex justify-center mb-12">
+
                     <div
+
                         class="flex items-center gap-6 bg-white p-6 rounded-xl shadow-lg border border-gray-100 transform transition duration-300 hover:scale-[1.02]">
+
                         <img src="static/images/faculty/Picture1.jpg"
+
                             onerror="this.onerror=null; this.src='https://placehold.co/120x120/4a5568/ffffff?text=SM';"
+
                             alt="Dr. Shreevani Maddukuri"
+
                             class="w-28 h-28 object-cover rounded-full border-4 border-blue-500">
+
                         <div class="coordinator-details">
+
                             <h3 class="text-xl font-semibold text-gray-900">Dr. K Prakash</h3>
+
                             <p class="text-blue-600 font-medium">Research & Project Coordinator</p>
+
                         </div>
+
                     </div>
+
                 </div>
 
-                <!-- Research Areas -->
+
+
                 <div class="mb-16">
+
                     <h3 class="text-2xl font-semibold mb-6 text-center text-gray-700">Research Areas</h3>
+
                     <div class="grid md:grid-cols-3 gap-8">
-                        <!-- Card 1: AI -->
+
                         <div
+
                             class="bg-gray-50 p-6 rounded-xl shadow-md border-l-4 border-blue-500 hover:shadow-xl transition duration-300">
+
                             <i class="fas fa-brain text-4xl text-blue-500 mb-4"></i>
+
                             <h4 class="text-xl font-bold text-gray-900 mb-2">Add the topic</h4>
+
                             <p class="text-gray-600">Topic info</p>
+
                         </div>
-                        <!-- Card 2: Predictive Analytics -->
+
                         <div
+
                             class="bg-gray-50 p-6 rounded-xl shadow-md border-l-4 border-green-500 hover:shadow-xl transition duration-300">
+
                             <i class="fas fa-chart-line text-4xl text-green-500 mb-4"></i>
+
                             <h4 class="text-xl font-bold text-gray-900 mb-2">Add the topic</h4>
+
                             <p class="text-gray-600">Topic info</p>
+
                         </div>
-                        <!-- Card 3: Machine Learning -->
+
                         <div
+
                             class="bg-gray-50 p-6 rounded-xl shadow-md border-l-4 border-red-500 hover:shadow-xl transition duration-300">
+
                             <i class="fas fa-shield-alt text-4xl text-red-500 mb-4"></i>
+
                             <h4 class="text-xl font-bold text-gray-900 mb-2">Add the topic</h4>
+
                             <p class="text-gray-600">Topic info</p>
+
                         </div>
+
                     </div>
+
                 </div>
 
-                <!-- Publications 
-                <div class="max-w-4xl mx-auto">
-                    <h3 class="text-2xl font-semibold mb-6 text-center text-gray-700">Recent Publications</h3>
-                    <div class="space-y-6"> -->
-                <!-- Publication 1 -->
-                <!--  <div class="publication-item border-b pb-4">
-                            <h4 class="text-lg font-semibold text-blue-700">"A feature-level ensemble machine learning approach for attack detection in IoT networks"</h4>
-                            <p class="text-sm text-gray-500 italic">Journal Discover Internet of Things, 2024</p>
-                            <p class="text-sm text-gray-700 font-medium">Authors: Prof. Firoz Khan</p>
-                        </div>-->
-                <!-- Publication 2 -->
-                <!-- <div class="publication-item border-b pb-4">
-                            <h4 class="text-lg font-semibold text-blue-700">"IVFD: An Intelligent Video Forgery Detection Framework Leveraging InceptionV3 and GRU for Enhanced Forensics."</h4>
-                            <p class="text-sm text-gray-500 italic">Indonesian Journal of Electrical Engineering and Informatics (IJEEI), Vol. 13, No. 2, June 2025, pp. 439-450</p>
-                            <p class="text-sm text-gray-700 font-medium">Authors: K. Bhargavi, M. J. Pasha, R. Kotoju, & M. S. Vani.</p>
-                        </div>-->
-                <!--Publication 3 
-                        <div class="publication-item border-b pb-4">
-                            <h4 class="text-lg font-semibold text-blue-700">"Artificial Intelligence Enabled Wireless Networking for Beyond 5G"</h4>
-                            <p class="text-sm text-gray-500 italic">International Journal of Research Culture Society</p>
-                            <p class="text-sm text-gray-700 font-medium">Authors: Prof. Ashwini G T</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>-->
 
-                <!-- Student Projects -->
+
                 <section id="projects" class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
+
                     <div class="max-w-7xl mx-auto">
+
                         <div class="section-header">
+
                             <h2 class="section-title">Student Projects & Products</h2>
+
                             <p class="section-subtitle text-gray-600">Innovation through practical application</p>
+
                         </div>
+
+
 
                         <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
-                            <!-- Project Item 1 -->
+
                             <div
+
                                 class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-indigo-500 transition duration-300 hover:shadow-2xl">
+
                                 <img src="static/images/kiet.jpg"
+
                                     onerror="this.onerror=null; this.src='https://placehold.co/600x400/312e81/ffffff?text=Pill+Bot';"
+
                                     alt="Pill Bot" class="rounded-lg mb-4 w-full h-48 object-cover">
+
                                 <h3 class="text-xl font-bold text-indigo-700 mb-2">Generative AI solution for health and
+
                                     well-being</h3>
+
                                 <p class="text-gray-600 mb-3">Abhiram Girish Naik from the Department of Cybersecurity, GM
+
                                     University, secured 2nd place at the National-level Vyoma Hackathon – TechSurge 2K25 in
+
                                     Hyderabad. As part of a talented team, he contributed to building a Generative AI
+
                                     solution for health and well-being, showcasing innovation, technical expertise, and
+
                                     problem-solving skills</p>
+
                                 <p class="text-sm font-semibold text-gray-900">Team: Halamma</p>
+
                             </div>
 
-                            <!-- Project Item 2 -->
+
+
                             <div
+
                                 class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-green-500 transition duration-300 hover:shadow-2xl">
+
                                 <img src="static/images/achievement2.jpg"
+
                                     onerror="this.onerror=null; this.src='https://placehold.co/600x400/059669/ffffff?text=Clean+Tech';"
+
                                     alt="Predictive Model" class="rounded-lg mb-4 w-full h-48 object-cover">
+
                                 <h3 class="text-xl font-bold text-green-700 mb-2">Green Transport Technologies</h3>
+
                                 <p class="text-gray-600 mb-3">Sanjana N Patel from the Department of Cybersecurity, GM
+
                                     University, achieved 3rd place at the National-level Research Poster Making Competition
+
                                     under the Jigyasa 2.0 program, organized by the Ministry of Science and Technology and
+
                                     the Ministry of Earth Sciences during IISF at CSIR–CRRI, New Delhi. Her poster
+
                                     highlighted “Green Transport Technologies".</p>
+
                                 <p class="text-sm font-semibold text-gray-900">Team: Halamma</p>
+
                             </div>
+
                         </div>
+
                     </div>
+
                 </section>
 
-                <!-- Admissions Section -->
+
+
                 <section id="admissions" class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+
                     <div class="max-w-7xl mx-auto">
+
                         <div class="section-header">
+
                             <h2 class="section-title">Admission Activities</h2>
+
                             <p class="section-subtitle text-gray-600">Join our CY & IY community</p>
+
                         </div>
 
-                        <!-- Admission Coordinators -->
+
+
                         <div class="flex flex-col md:flex-row justify-center gap-8 mb-12">
-                            <!-- Coordinator 1 -->
+
                             <div
+
                                 class="flex items-center gap-6 bg-gray-50 p-6 rounded-xl shadow-md border-2 border-blue-100 transform transition duration-300 hover:shadow-lg">
+
                                 <img src="static/images/faculty/Picture2.jpg"
+
                                     onerror="this.onerror=null; this.src='https://placehold.co/120x120/f97316/ffffff?text=IK';"
+
                                     alt="Admission Coordinator"
+
                                     class="w-28 h-28 object-cover rounded-full border-4 border-blue-400">
+
                                 <div>
+
                                     <h3 class="text-xl font-semibold text-gray-900">Dr.ArunKumar B T</h3>
+
                                     <p class="text-blue-600 font-medium">Head Of Department</p>
+
                                     <p class="text-sm text-gray-500">Email: hod.iycy@gmu.ac.in</p>
+
                                     <p class="text-sm text-gray-500">Phone: +91-9945221208</p>
+
                                 </div>
+
                             </div>
 
+
+
                         </div>
+
                     </div>
 
-                    <!-- Admission Info Cards -->
+
+
                     <div class="admission-info">
+
                         <div class="grid md:grid-cols-2 gap-8">
-                            <!-- Program 1 -->
+
                             <div class="bg-blue-50 p-6 rounded-xl shadow-lg border-b-4 border-blue-600 text-center">
+
                                 <h3 class="text-2xl font-bold text-blue-800 mb-4">B.Tech CS-Cyber Security</h3>
+
                                 <ul class="list-none space-y-2 mb-6 text-left inline-block">
+
                                     <li class="flex items-center text-gray-700"><i
+
                                             class="fas fa-check-circle text-green-500 mr-2"></i>Eligibility: 12th PUC
+
                                         Science</li>
+
                                     <li class="flex items-center text-gray-700"><i
+
                                             class="fas fa-check-circle text-green-500 mr-2"></i>Entrance: KCET/Mgmt</li>
+
                                     <li class="flex items-center text-gray-700"><i
+
                                             class="fas fa-check-circle text-green-500 mr-2"></i>Seats: 120</li>
+
                                 </ul>
+
                                 <button
+
                                     class="bg-blue-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-700 transition duration-300 shadow-md">Apply
+
                                     Now</button>
+
                             </div>
 
-                            <!-- Program 2 -->
+
+
                             <div class="bg-green-50 p-6 rounded-xl shadow-lg border-b-4 border-green-600 text-center">
+
                                 <h3 class="text-2xl font-bold text-green-800 mb-4">B.Tech CS - Information Security</h3>
+
                                 <ul class="list-none space-y-2 mb-6 text-left inline-block">
+
                                     <li class="flex items-center text-gray-700"><i
+
                                             class="fas fa-check-circle text-green-500 mr-2"></i>Eligibility: 12th PUC
+
                                         Science</li>
+
                                     <li class="flex items-center text-gray-700"><i
+
                                             class="fas fa-check-circle text-green-500 mr-2"></i>Entrance: KCET/Mgmt</li>
+
                                     <li class="flex items-center text-gray-700"><i
+
                                             class="fas fa-check-circle text-green-500 mr-2"></i>Seats: 120</li>
+
                                 </ul>
+
                                 <button
+
                                     class="bg-green-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-green-700 transition duration-300 shadow-md">Apply
+
                                     Now</button>
+
                             </div>
+
                         </div>
+
                     </div>
+
             </div>
+
         </section>
 
-        <!-- University Connect Program (UCP) -->
+
+
         <section id="ucp" class="py-16 px-4 sm:px-6 lg:px-8 text-white">
+
             <div class="max-w-7xl mx-auto">
-                <!-- Section Header -->
+
                 <div class="section-header">
+
                     <h2 class="text-3xl font-bold text-white mb-2">University Connect Program (UCP)</h2>
+
                     <p class="text-xl text-gray-200">Building strong bridges between academia and industry</p>
+
                 </div>
 
-                <!-- About UCP -->
+
+
                 <div class="text-center mb-10 text-lg md:text-xl leading-relaxed max-w-4xl mx-auto">
+
                     <p class="text-gray-100">
+
                         The <strong>University Connect Program (UCP)</strong> at GM University is designed to
+
                         foster meaningful partnerships with leading industries. Through this program,
+
                         students gain hands-on exposure, industry-driven learning, and opportunities
+
                         to engage with global technology leaders. UCP ensures our graduates are not just
+
                         academically strong but also **career-ready professionals**.
+
                     </p>
+
                 </div>
 
-                <!-- Coordinator 
-                <div class="flex justify-center mb-12">
-                    <div class="flex items-center gap-6 bg-white p-6 rounded-xl shadow-xl transition duration-300 hover:ring-4 ring-yellow-400">
-                        <img src="static/images/faculty/f.jpg" onerror="this.onerror=null; this.src='https://placehold.co/120x120/10b981/ffffff?text=FK';" alt="UCP Coordinator" class="w-32 h-32 object-cover rounded-full border-4 border-yellow-500">
-                        <div class="text-gray-800">
-                            <h3 class="text-2xl font-bold mb-1">Mr. Firoz Khan</h3>
-                            <p class="text-lg font-medium text-yellow-600 mb-2">UCP Coordinator, Industrial Relations</p>
-                            <p class="text-sm"><i class="fas fa-envelope mr-2"></i>Email: <a href="mailto:ucp.cybersecurity@gmu.ac.in" class="text-blue-500 hover:underline">ucp.cybersecurity@gmu.ac.in</a></p>
-                            <p class="text-sm"><i class="fas fa-phone mr-2"></i>Phone: <a href="tel:+919876543215" class="text-blue-500 hover:underline">+91-9876543215</a></p>
-                        </div>
-                    </div>
-                </div>
-    -->
-                <!-- Recently Visited Companies -->
+
+
                 <div class="recent-companies">
+
                     <h3 class="text-3xl font-bold mb-8 text-center text-white">Recently Visited Companies</h3>
+
                     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
-                        <!-- Company Card 1 -->
+
+
                         <div
+
                             class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:translate-y-[-4px]">
+
                             <img src="static/companies/tally.png"
+
                                 onerror="this.onerror=null; this.src='https://placehold.co/150x80/ef4444/ffffff?text=TALLY';"
+
                                 alt="Tally HQ" class="max-h-20 object-contain mx-auto mb-4">
+
                             <h4 class="text-xl font-bold text-gray-900 mb-2">Tally HQ, Bangalore</h4>
+
                             <p class="text-gray-600 text-sm">On 13th August 2025, a distinguished delegation from GM
+
                                 University comprising faculty and students visited the Tally headquarters...</p>
+
                         </div>
 
-                        <!-- Company Card 2 -->
+
+
                         <div
+
                             class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:translate-y-[-4px]">
+
                             <img src="static/companies/intel.png"
+
                                 onerror="this.onerror=null; this.src='https://placehold.co/150x80/22c55e/ffffff?text=INTEL';"
+
                                 alt="Intel" class="max-h-20 object-contain mx-auto mb-4">
+
                             <h4 class="text-xl font-bold text-gray-900 mb-2">Intel, Bangalore</h4>
+
                             <p class="text-gray-600 text-sm">Collaboration on AI & VLSI PG Diploma programs for future-ready
+
                                 talent.</p>
+
                         </div>
 
-                        <!-- Company Card 3 -->
+
+
                         <div
+
                             class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:translate-y-[-4px]">
+
                             <img src="static/companies/ibm.png"
+
                                 onerror="this.onerror=null; this.src='https://placehold.co/150x80/3b82f6/ffffff?text=IBM';"
+
                                 alt="IBM" class="max-h-20 object-contain mx-auto mb-4">
+
                             <h4 class="text-xl font-bold text-gray-900 mb-2">IBM, Bangalore</h4>
+
                             <p class="text-gray-600 text-sm">Designing PG Diploma programs in AI, Cloud, and Enterprise
+
                                 Solutions.</p>
+
                         </div>
 
-                        <!-- Company Card 4 -->
+
+
                         <div
+
                             class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:translate-y-[-4px]">
+
                             <img src="static/companies/ibm-gmu.png"
+
                                 onerror="this.onerror=null; this.src='https://placehold.co/150x80/3b82f6/ffffff?text=IBM+at+GMU';"
+
                                 alt="IBM GMU Visit" class="max-h-20 object-contain mx-auto mb-4">
+
                             <h4 class="text-xl font-bold text-gray-900 mb-2">IBM Leaders at GMU</h4>
+
                             <p class="text-gray-600 text-sm">Skill-based collaborations and industry-driven PG Diploma
+
                                 courses.</p>
+
                         </div>
 
-                        <!-- Company Card 5 -->
+
+
                         <div
+
                             class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:translate-y-[-4px]">
+
                             <img src="static/companies/tally-gmu.png"
+
                                 onerror="this.onerror=null; this.src='https://placehold.co/150x80/ef4444/ffffff?text=TALLY+at+GMU';"
+
                                 alt="Tally GMU Visit" class="max-h-20 object-contain mx-auto mb-4">
+
                             <h4 class="text-xl font-bold text-gray-900 mb-2">Tally Education at GMU</h4>
+
                             <p class="text-gray-600 text-sm">Strengthening skill-based learning with Tally’s domain
+
                                 expertise.</p>
+
                         </div>
+
                     </div>
+
                 </div>
+
             </div>
+
         </section>
 
-        <!-- Student Achievements (Scrolling) -->
+
+
         <section id="achievements" class="py-16">
+
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
                 <div class="section-header">
+
                     <h2 class="section-title">Latest Student Achievements</h2>
+
                     <p class="section-subtitle text-gray-600">Celebrating milestones of excellence</p>
+
                 </div>
+
             </div>
+
+
 
             <div class="achievements-slider">
+
                 <div class="slider-track">
 
-                    <!-- Item 1 -->
+
+
                     <div
+
                         class="achievement-card bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition duration-300 border-l-4 border-yellow-500">
+
                         <img src="static/images/achievement1.jpg"
+
                             onerror="this.onerror=null; this.src='https://placehold.co/300x200/f59e0b/ffffff?text=Hackathon+Winner';"
+
                             alt="Achievement 1" class="rounded-lg mb-4 w-full h-32 object-cover">
+
                         <h3 class="text-xl font-bold text-yellow-600 mb-2">🏆 Hackathon Winner</h3>
+
                         <p class="text-gray-600 text-sm">Secured 2nd Place at Vyoma Hackathon – TechSurge 2K25. Developed a
+
                             Generative AI-powered solution for enhancing health and well-being.</p>
+
                     </div>
 
-                    <!-- Item 2 -->
+
+
                     <div
+
                         class="achievement-card bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition duration-300 border-l-4 border-green-500">
+
                         <img src="static/images/achievement2.jpg"
+
                             onerror="this.onerror=null; this.src='https://placehold.co/300x200/10b981/ffffff?text=SIH+Winners';"
+
                             alt="Achievement 2" class="rounded-lg mb-4 w-full h-32 object-cover">
+
                         <h3 class="text-xl font-bold text-green-600 mb-2">🏆 SIH Grand Finale 2K24 Winners</h3>
+
                         <p class="text-gray-600 text-sm">Proud winners of the SIH grand finale 2k24, recognized by the
+
                             Ministry of Education and AICTE Delegates.</p>
+
                     </div>
 
-                    <!-- Item 3 -->
+
+
                     <div
+
                         class="achievement-card bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition duration-300 border-l-4 border-blue-500">
+
                         <img src="static/images/achievement3.jpg"
+
                             onerror="this.onerror=null; this.src='https://placehold.co/300x200/3b82f6/ffffff?text=Placement';"
+
                             alt="Achievement 3" class="rounded-lg mb-4 w-full h-32 object-cover">
+
                         <h3 class="text-xl font-bold text-blue-600 mb-2">LUXOFT Company Placement</h3>
+
                         <p class="text-gray-600 text-sm">Pavan Varahad, Suhail Khan, and Rishi G were successfully placed at
+
                             LUXOFT DFC TECHNOLOGIES, Bengaluru.</p>
+
                     </div>
 
+
+
                     <div
+
                         class="achievement-card bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition duration-300 border-l-4 border-red-500">
+
                         <img src="static/images/achievement4.jpg"
+
                             onerror="this.onerror=null; this.src='https://placehold.co/300x200/ef4444/ffffff?text=1st+Place+Emerge';"
+
                             alt="Achievement 1" class="rounded-lg mb-4 w-full h-32 object-cover">
+
                         <h3 class="text-xl font-bold text-red-600 mb-2">🏆 State-Level Hackathon Winner</h3>
+
                         <p class="text-gray-600 text-sm">Secured 1st Place at the State-Level Hackathon – Emerge 2025 at
+
                             Jain Institute of Technology, Davangere.</p>
+
                     </div>
 
+
+
                     <div
+
                         class="achievement-card bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition duration-300 border-l-4 border-purple-500">
+
                         <img src="static/images/achievement5.jpg"
+
                             onerror="this.onerror=null; this.src='https://placehold.co/300x200/8b5cf6/ffffff?text=Srishti+Hackathon';"
+
                             alt="Achievement 1" class="rounded-lg mb-4 w-full h-32 object-cover">
+
                         <h3 class="text-xl font-bold text-purple-600 mb-2">🏆 Hackathon Runner-up</h3>
+
                         <p class="text-gray-600 text-sm">Proud to share that our team secured 2nd place out of 105 teams at
+
                             the Srishti 36-Hour Hackathon hosted by Acharya Institute of Technology, Bangalore.</p>
+
                     </div>
 
-                    <!-- Duplicate set for continuous loop -->
+
+
                     <div
+
                         class="achievement-card bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition duration-300 border-l-4 border-yellow-500">
+
                         <img src="static/images/achievement1.jpg"
+
                             onerror="this.onerror=null; this.src='https://placehold.co/300x200/f59e0b/ffffff?text=Hackathon+Winner+Copy';"
+
                             alt="Achievement 1" class="rounded-lg mb-4 w-full h-32 object-cover">
+
                         <h3 class="text-xl font-bold text-yellow-600 mb-2">🏆 Hackathon Winner</h3>
+
                         <p class="text-gray-600 text-sm">Secured 2nd Place at Vyoma Hackathon – TechSurge 2K25. Developed a
+
                             Generative AI-powered solution for enhancing health and well-being.</p>
+
                     </div>
 
+
+
                     <div
+
                         class="achievement-card bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition duration-300 border-l-4 border-green-500">
+
                         <img src="static/images/achievement2.jpg"
+
                             onerror="this.onerror=null; this.src='https://placehold.co/300x200/10b981/ffffff?text=SIH+Winners+Copy';"
+
                             alt="Achievement 2" class="rounded-lg mb-4 w-full h-32 object-cover">
+
                         <h3 class="text-xl font-bold text-green-600 mb-2">🏆 SIH Grand Finale 2K24 Winners</h3>
+
                         <p class="text-gray-600 text-sm">Proud winners of the SIH grand finale 2k24, recognized by the
+
                             Ministry of Education and AICTE Delegates.</p>
+
                     </div>
+
                 </div>
+
             </div>
+
         </section>
 
-        <!-- Faculty Achievements -->
+
+
         <section class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-100">
+
             <div class="faculty-achievements">
+
                 <div class="max-w-7xl mx-auto">
+
                     <div class="section-header">
+
                         <h2 class="section-title">Faculty Achievements</h2>
+
                         <p class="section-subtitle text-gray-600">Recognition and excellence in academia</p>
-                    </div>
-                    <!-- Faculty Achievements List -->
 
-                </div>
+                    </div>
+
+                    </div>
+
         </section>
 
-        <!-- Placements Section -->
+
+
         <section id="placements" class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+
             <div class="max-w-7xl mx-auto">
+
                 <div class="section-header">
+
                     <h2 class="section-title">Placement Activities</h2>
+
                     <p class="section-subtitle text-gray-600">Excellent career opportunities for our graduates</p>
+
                 </div>
 
-                <!-- Placement Coordinators -->
+
+
                 <div class="flex flex-col md:flex-row justify-center gap-8 mb-10">
-                    <!-- Coordinator 1 -->
+
                     <div
+
                         class="flex items-center gap-6 bg-gray-50 p-6 rounded-xl shadow-md border-2 border-green-100 transform transition duration-300 hover:shadow-lg">
+
                         <img src="static/images/faculty/Picture3.jpg"
+
                             onerror="this.onerror=null; this.src='https://placehold.co/120x120/1e40af/ffffff?text=SM';"
+
                             alt="Placement Coordinator"
+
                             class="w-28 h-28 object-cover rounded-full border-4 border-green-500">
+
                         <div>
+
                             <h3 class="text-xl font-semibold text-gray-900">Prof. Kotreshi S. N.</h3>
+
                             <p class="text-green-600 font-medium">Placement Coordinator</p>
+
                         </div>
+
                     </div>
+
                 </div>
 
-                <!-- Preparation Link -->
+
+
                 <div class="mb-12 max-w-sm mx-auto">
+
                     <a href="https://leap.gmu.ac.in/leap/students/aptitude_development.php"
+
                         class="block w-full text-center bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300 shadow-xl"
+
                         target="_blank">
+
                         Get Yourself ready for placements
+
                     </a>
+
                 </div>
 
-                <!-- Placement Stats -->
+
+
                 <div class="placement-stats mb-12">
+
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 bg-blue-50 p-8 rounded-xl shadow-inner">
+
                         <div class="stat-item text-center">
+
                             <h3 class="text-3xl sm:text-4xl font-extrabold text-blue-700 mb-1">99%</h3>
+
                             <p class="text-gray-600 font-medium text-sm sm:text-base">Placement Rate</p>
+
                         </div>
+
                         <div class="stat-item text-center">
+
                             <h3 class="text-3xl sm:text-4xl font-extrabold text-blue-700 mb-1">₹34LPA</h3>
+
                             <p class="text-gray-600 font-medium text-sm sm:text-base">Highest Package</p>
+
                         </div>
+
                         <div class="stat-item text-center">
+
                             <h3 class="text-3xl sm:text-4xl font-extrabold text-blue-700 mb-1">₹4LPA</h3>
+
                             <p class="text-gray-600 font-medium text-sm sm:text-base">Average Package</p>
+
                         </div>
+
                         <div class="stat-item text-center">
+
                             <h3 class="text-3xl sm:text-4xl font-extrabold text-blue-700 mb-1">50+</h3>
+
                             <p class="text-gray-600 font-medium text-sm sm:text-base">Recruiting Companies</p>
+
                         </div>
+
                     </div>
+
                 </div>
 
-                <!-- Recruiters Slider -->
+
+
                 <div class="recruiters-slider bg-white border-t border-b border-gray-200">
+
                     <div class="slider-track opacity-75">
-                        <!-- Original set of slides -->
+
                         <div class="recruiter-slide p-4 flex flex-col items-center justify-center">
+
                             <img src="static/recruiters/microsoft.png"
+
                                 onerror="this.onerror=null; this.src='https://placehold.co/100x40/0078d4/ffffff?text=Microsoft';"
+
                                 alt="Microsoft" class="h-10 w-auto object-contain mb-2">
+
                             <span class="text-xs font-semibold text-gray-500">Microsoft</span>
-                        </div>
-                        <div class="recruiter-slide p-4 flex flex-col items-center justify-center">
-                            <img src="static/recruiters/google.png"
-                                onerror="this.onerror=null; this.src='https://placehold.co/100x40/ea4335/ffffff?text=Google';"
-                                alt="Google" class="h-10 w-auto object-contain mb-2">
-                            <span class="text-xs font-semibold text-gray-500">Google</span>
-                        </div>
-                        <div class="recruiter-slide p-4 flex flex-col items-center justify-center">
-                            <img src="static/recruiters/luxoft.png"
-                                onerror="this.onerror=null; this.src='https://placehold.co/100x40/00a680/ffffff?text=Luxoft';"
-                                alt="Luxoft" class="h-10 w-auto object-contain mb-2">
-                            <span class="text-xs font-semibold text-gray-500">Luxoft</span>
-                        </div>
-                        <div class="recruiter-slide p-4 flex flex-col items-center justify-center">
-                            <img src="static/recruiters/ibm.png"
-                                onerror="this.onerror=null; this.src='https://placehold.co/100x40/006699/ffffff?text=IBM';"
-                                alt="IBM" class="h-10 w-auto object-contain mb-2">
-                            <span class="text-xs font-semibold text-gray-500">IBM</span>
-                        </div>
-                        <div class="recruiter-slide p-4 flex flex-col items-center justify-center">
-                            <img src="static/recruiters/tcs.png"
-                                onerror="this.onerror=null; this.src='https://placehold.co/100x40/2c3e50/ffffff?text=TCS';"
-                                alt="TCS" class="h-10 w-auto object-contain mb-2">
-                            <span class="text-xs font-semibold text-gray-500">TCS</span>
-                        </div>
-                        <div class="recruiter-slide p-4 flex flex-col items-center justify-center">
-                            <img src="static/recruiters/infosys.jpg"
-                                onerror="this.onerror=null; this.src='https://placehold.co/100x40/7c3aed/ffffff?text=Infosys';"
-                                alt="Infosys" class="h-10 w-auto object-contain mb-2">
-                            <span class="text-xs font-semibold text-gray-500">Infosys</span>
-                        </div>
-                        <div class="recruiter-slide p-4 flex flex-col items-center justify-center">
-                            <img src="static/recruiters/wipro.jpg"
-                                onerror="this.onerror=null; this.src='https://placehold.co/100x40/facc15/000000?text=Wipro';"
-                                alt="Wipro" class="h-10 w-auto object-contain mb-2">
-                            <span class="text-xs font-semibold text-gray-500">Wipro</span>
-                        </div>
-                        <div class="recruiter-slide p-4 flex flex-col items-center justify-center">
-                            <img src="static/recruiters/accenture.png"
-                                onerror="this.onerror=null; this.src='https://placehold.co/100x40/a78bfa/ffffff?text=Accenture';"
-                                alt="Accenture" class="h-10 w-auto object-contain mb-2">
-                            <span class="text-xs font-semibold text-gray-500">Accenture</span>
-                        </div>
-                        <div class="recruiter-slide p-4 flex flex-col items-center justify-center">
-                            <img src="static/recruiters/amazon.png"
-                                onerror="this.onerror=null; this.src='https://placehold.co/100x40/ff9900/000000?text=Amazon';"
-                                alt="Amazon" class="h-10 w-auto object-contain mb-2">
-                            <span class="text-xs font-semibold text-gray-500">Amazon</span>
+
                         </div>
 
-                        <!-- Duplicate set for infinite loop -->
                         <div class="recruiter-slide p-4 flex flex-col items-center justify-center">
-                            <img src="static/recruiters/microsoft.png"
-                                onerror="this.onerror=null; this.src='https://placehold.co/100x40/0078d4/ffffff?text=Microsoft';"
-                                alt="Microsoft" class="h-10 w-auto object-contain mb-2">
-                            <span class="text-xs font-semibold text-gray-500">Microsoft</span>
-                        </div>
-                        <div class="recruiter-slide p-4 flex flex-col items-center justify-center">
+
                             <img src="static/recruiters/google.png"
+
                                 onerror="this.onerror=null; this.src='https://placehold.co/100x40/ea4335/ffffff?text=Google';"
+
                                 alt="Google" class="h-10 w-auto object-contain mb-2">
+
                             <span class="text-xs font-semibold text-gray-500">Google</span>
+
                         </div>
+
                         <div class="recruiter-slide p-4 flex flex-col items-center justify-center">
+
                             <img src="static/recruiters/luxoft.png"
+
                                 onerror="this.onerror=null; this.src='https://placehold.co/100x40/00a680/ffffff?text=Luxoft';"
+
                                 alt="Luxoft" class="h-10 w-auto object-contain mb-2">
+
                             <span class="text-xs font-semibold text-gray-500">Luxoft</span>
+
                         </div>
+
                         <div class="recruiter-slide p-4 flex flex-col items-center justify-center">
+
                             <img src="static/recruiters/ibm.png"
+
                                 onerror="this.onerror=null; this.src='https://placehold.co/100x40/006699/ffffff?text=IBM';"
+
                                 alt="IBM" class="h-10 w-auto object-contain mb-2">
+
                             <span class="text-xs font-semibold text-gray-500">IBM</span>
+
                         </div>
+
                         <div class="recruiter-slide p-4 flex flex-col items-center justify-center">
+
                             <img src="static/recruiters/tcs.png"
+
                                 onerror="this.onerror=null; this.src='https://placehold.co/100x40/2c3e50/ffffff?text=TCS';"
+
                                 alt="TCS" class="h-10 w-auto object-contain mb-2">
+
                             <span class="text-xs font-semibold text-gray-500">TCS</span>
+
                         </div>
+
+                        <div class="recruiter-slide p-4 flex flex-col items-center justify-center">
+
+                            <img src="static/recruiters/infosys.jpg"
+
+                                onerror="this.onerror=null; this.src='https://placehold.co/100x40/7c3aed/ffffff?text=Infosys';"
+
+                                alt="Infosys" class="h-10 w-auto object-contain mb-2">
+
+                            <span class="text-xs font-semibold text-gray-500">Infosys</span>
+
+                        </div>
+
+                        <div class="recruiter-slide p-4 flex flex-col items-center justify-center">
+
+                            <img src="static/recruiters/wipro.jpg"
+
+                                onerror="this.onerror=null; this.src='https://placehold.co/100x40/facc15/000000?text=Wipro';"
+
+                                alt="Wipro" class="h-10 w-auto object-contain mb-2">
+
+                            <span class="text-xs font-semibold text-gray-500">Wipro</span>
+
+                        </div>
+
+                        <div class="recruiter-slide p-4 flex flex-col items-center justify-center">
+
+                            <img src="static/recruiters/accenture.png"
+
+                                onerror="this.onerror=null; this.src='https://placehold.co/100x40/a78bfa/ffffff?text=Accenture';"
+
+                                alt="Accenture" class="h-10 w-auto object-contain mb-2">
+
+                            <span class="text-xs font-semibold text-gray-500">Accenture</span>
+
+                        </div>
+
+                        <div class="recruiter-slide p-4 flex flex-col items-center justify-center">
+
+                            <img src="static/recruiters/amazon.png"
+
+                                onerror="this.onerror=null; this.src='https://placehold.co/100x40/ff9900/000000?text=Amazon';"
+
+                                alt="Amazon" class="h-10 w-auto object-contain mb-2">
+
+                            <span class="text-xs font-semibold text-gray-500">Amazon</span>
+
+                        </div>
+
+
+
+                        <div class="recruiter-slide p-4 flex flex-col items-center justify-center">
+
+                            <img src="static/recruiters/microsoft.png"
+
+                                onerror="this.onerror=null; this.src='https://placehold.co/100x40/0078d4/ffffff?text=Microsoft';"
+
+                                alt="Microsoft" class="h-10 w-auto object-contain mb-2">
+
+                            <span class="text-xs font-semibold text-gray-500">Microsoft</span>
+
+                        </div>
+
+                        <div class="recruiter-slide p-4 flex flex-col items-center justify-center">
+
+                            <img src="static/recruiters/google.png"
+
+                                onerror="this.onerror=null; this.src='https://placehold.co/100x40/ea4335/ffffff?text=Google';"
+
+                                alt="Google" class="h-10 w-auto object-contain mb-2">
+
+                            <span class="text-xs font-semibold text-gray-500">Google</span>
+
+                        </div>
+
+                        <div class="recruiter-slide p-4 flex flex-col items-center justify-center">
+
+                            <img src="static/recruiters/luxoft.png"
+
+                                onerror="this.onerror=null; this.src='https://placehold.co/100x40/00a680/ffffff?text=Luxoft';"
+
+                                alt="Luxoft" class="h-10 w-auto object-contain mb-2">
+
+                            <span class="text-xs font-semibold text-gray-500">Luxoft</span>
+
+                        </div>
+
+                        <div class="recruiter-slide p-4 flex flex-col items-center justify-center">
+
+                            <img src="static/recruiters/ibm.png"
+
+                                onerror="this.onerror=null; this.src='https://placehold.co/100x40/006699/ffffff?text=IBM';"
+
+                                alt="IBM" class="h-10 w-auto object-contain mb-2">
+
+                            <span class="text-xs font-semibold text-gray-500">IBM</span>
+
+                        </div>
+
+                        <div class="recruiter-slide p-4 flex flex-col items-center justify-center">
+
+                            <img src="static/recruiters/tcs.png"
+
+                                onerror="this.onerror=null; this.src='https://placehold.co/100x40/2c3e50/ffffff?text=TCS';"
+
+                                alt="TCS" class="h-10 w-auto object-contain mb-2">
+
+                            <span class="text-xs font-semibold text-gray-500">TCS</span>
+
+                        </div>
+
                     </div>
+
                 </div>
+
             </div>
+
         </section>
 
-        <!-- Alumni Section 
-        <section class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
-            <div class="max-w-7xl mx-auto">
-                <div class="section-header">
-                    <h2 class="section-title">Department Alumni</h2>
-                    <p class="section-subtitle text-gray-600">Our graduates making impact worldwide</p>
-                </div>
-                <div class="grid md:grid-cols-3 gap-8">
-                -->
 
-        <!-- Alumni Card 1 
-                    <div class="bg-white p-6 rounded-xl shadow-lg text-center transition duration-300 hover:shadow-2xl hover:border-b-4 border-indigo-500">
-                        <img src="static/images/gmu.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/100x100/10b981/ffffff?text=Alumni+1';" alt="Alumni" class="w-24 h-24 object-cover rounded-full mx-auto mb-4 border-4 border-indigo-100">
-                        <h3 class="text-xl font-bold text-gray-900">Dr. Rajeshwari R</h3>
-                        <p class="text-blue-600 font-medium position">Senior Cyber Security Analyst</p>
-                        <p class="text-sm text-gray-500 batch">Batch of 2018</p>
-                        <p class="mt-4 italic text-gray-600 testimonial">"The research foundation I received here was instrumental in tackling complex industry problems."</p>
-                    </div>
-                    -->
-        <!-- Alumni Card 2 
-                    <div class="bg-white p-6 rounded-xl shadow-lg text-center transition duration-300 hover:shadow-2xl hover:border-b-4 border-green-500">
-                        <img src="static/images/gmu.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/100x100/3b82f6/ffffff?text=Alumni+2';" alt="Alumni" class="w-24 h-24 object-cover rounded-full mx-auto mb-4 border-4 border-green-100">
-                        <h3 class="text-xl font-bold text-gray-900">Sanjay M.</h3>
-                        <p class="text-blue-600 font-medium position">Security Engineer, Google</p>
-                        <p class="text-sm text-gray-500 batch">Batch of 2021</p>
-                        <p class="mt-4 italic text-gray-600 testimonial">"The practical projects and UCP program gave me the edge I needed for my career."</p>
-                    </div>
-                    -->
-        <!-- Alumni Card 3 
-                    <div class="bg-white p-6 rounded-xl shadow-lg text-center transition duration-300 hover:shadow-2xl hover:border-b-4 border-red-500">
-                        <img src="static/images/gmu.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/100x100/ef4444/ffffff?text=Alumni+3';" alt="Alumni" class="w-24 h-24 object-cover rounded-full mx-auto mb-4 border-4 border-red-100">
-                        <h3 class="text-xl font-bold text-gray-900">Ankita V.</h3>
-                        <p class="text-blue-600 font-medium position">CTO, Security Startup</p>
-                        <p class="text-sm text-gray-500 batch">Batch of 2020</p>
-                        <p class="mt-4 italic text-gray-600 testimonial">"GMU fostered my entrepreneurial spirit and provided the best technical mentorship."</p>
-                    </div>
-                </div>
-            </div>
-        </section> 
-    -->
-        <!-- Contact Section -->
+
         <section id="contact" class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-800 text-white">
+
             <div class="max-w-7xl mx-auto">
+
                 <div class="section-header">
+
                     <h2 class="section-title text-white">Contact Us</h2>
+
                     <p class="section-subtitle text-gray-300">Get in touch with our department</p>
+
                 </div>
+
+
 
                 <div class="grid lg:grid-cols-2 gap-12">
 
-                    <!-- Contact Info Grid -->
+
+
                     <div class="space-y-8">
-                        <!-- Address -->
+
                         <div
+
                             class="flex items-start space-x-4 p-4 rounded-xl bg-gray-700 hover:bg-gray-600 transition duration-300 shadow-lg">
+
                             <i class="fas fa-map-marker-alt text-3xl text-blue-400 mt-1"></i>
+
                             <div>
+
                                 <h3 class="text-xl font-bold mb-1">Location</h3>
+
                                 <p class="text-gray-300">
+
                                     Department of Cybersecurity and Information Security<br>
+
                                     GM University<br>
+
                                     Davangere, Karnataka - 577006
+
                                 </p>
+
                             </div>
+
                         </div>
 
-                        <!-- Phone -->
+
+
                         <div
+
                             class="flex items-start space-x-4 p-4 rounded-xl bg-gray-700 hover:bg-gray-600 transition duration-300 shadow-lg">
+
                             <i class="fas fa-phone text-3xl text-blue-400 mt-1"></i>
+
                             <div>
+
                                 <h3 class="text-xl font-bold mb-1">Phone</h3>
+
                                 <p class="text-gray-300">
+
                                     +91-9945221208<br>
 
+
+
                                 </p>
+
                             </div>
+
                         </div>
 
-                        <!-- Email -->
+
+
                         <div
+
                             class="flex items-start space-x-4 p-4 rounded-xl bg-gray-700 hover:bg-gray-600 transition duration-300 shadow-lg">
+
                             <i class="fas fa-envelope text-3xl text-blue-400 mt-1"></i>
+
                             <div>
+
                                 <h3 class="text-xl font-bold mb-1">Email</h3>
+
                                 <p class="text-gray-300">
+
                                     <a href="mailto:cybersecurity@gmu.ac.in"
+
                                         class="hover:underline">hod.iycy@gmu.ac.in</a><br>
+
                                     <a href="mailto:info@gmu.ac.in" class="hover:underline">info@gmu.ac.in</a>
+
                                 </p>
+
                             </div>
+
                         </div>
+
                     </div>
 
-                    <!-- Contact Form -->
+
+
                     <div class="contact-form bg-gray-700 p-8 rounded-xl shadow-2xl">
+
                         <h3 class="text-2xl font-bold mb-6 text-white">Send us a Message</h3>
+
                         <form id="contactForm"
+
                             onsubmit="alert('Message Sent! (Form submission is simulated for this preview)'); return false;">
+
                             <div class="mb-4">
+
                                 <input type="text" id="name" name="name" placeholder="Your Name" required
+
                                     class="w-full p-3 rounded-lg border-gray-600 bg-gray-600 text-white focus:ring-blue-500 focus:border-blue-500">
+
                             </div>
+
                             <div class="mb-4">
+
                                 <input type="email" id="email" name="email" placeholder="Your Email" required
+
                                     class="w-full p-3 rounded-lg border-gray-600 bg-gray-600 text-white focus:ring-blue-500 focus:border-blue-500">
+
                             </div>
+
                             <div class="mb-4">
+
                                 <input type="text" id="subject" name="subject" placeholder="Subject" required
+
                                     class="w-full p-3 rounded-lg border-gray-600 bg-gray-600 text-white focus:ring-blue-500 focus:border-blue-500">
+
                             </div>
+
                             <div class="mb-6">
+
                                 <textarea id="message" name="message" placeholder="Your Message" rows="5" required
+
                                     class="w-full p-3 rounded-lg border-gray-600 bg-gray-600 text-white focus:ring-blue-500 focus:border-blue-500"></textarea>
+
                             </div>
+
                             <button type="submit"
+
                                 class="w-full bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition duration-300">Send
+
                                 Message</button>
+
                         </form>
+
                     </div>
+
                 </div>
+
             </div>
+
         </section>
 
-        <!-- Footer -->
+
+
         <footer class="bg-gray-900 text-white py-12 px-4 sm:px-6 lg:px-8">
+
             <div class="max-w-7xl mx-auto">
+
                 <div class="grid md:grid-cols-4 gap-8 border-b border-gray-700 pb-8 mb-8">
 
+
+
                     <div class="footer-section">
+
                         <h3 class="text-xl font-bold mb-3 text-blue-400">GM University</h3>
+
                         <p class="text-sm font-semibold mb-2">Department of Cybersecurity</p>
+
                         <p class="text-gray-400 text-sm">Innovating minds, transforming futures through education and
+
                             research.</p>
+
                     </div>
 
+
+
                     <div class="footer-section">
+
                         <h3 class="text-xl font-bold mb-3">Quick Links</h3>
+
                         <ul class="space-y-2 text-sm text-gray-400">
+
                             <li><a href="#research" class="hover:text-blue-400 transition duration-300">Research</a></li>
+
                             <li><a href="#projects" class="hover:text-blue-400 transition duration-300">Student Projects</a>
+
                             </li>
+
                             <li><a href="#placements" class="hover:text-blue-400 transition duration-300">Placements</a>
+
                             </li>
+
                             <li><a href="#ucp" class="hover:text-blue-400 transition duration-300">UCP</a></li>
+
                         </ul>
+
                     </div>
 
+
+
                     <div class="footer-section">
+
                         <h3 class="text-xl font-bold mb-3">Contact Info</h3>
+
                         <p class="text-sm text-gray-400 mb-2"><i class="fas fa-phone mr-2 text-blue-400"></i> 18001237099
+
                         </p>
+
                         <p class="text-sm text-gray-400 mb-2"><i class="fas fa-envelope mr-2 text-blue-400"></i> gmu.ac.in
+
                         </p>
+
                         <p class="text-sm text-gray-400"><i class="fas fa-map-marker-alt mr-2 text-blue-400"></i> Davangere,
+
                             Karnataka</p>
+
                     </div>
 
+
+
                     <div class="footer-section">
+
                         <h3 class="text-xl font-bold mb-3">Follow Us</h3>
+
                         <div class="flex space-x-4 text-2xl">
+
                             <a href="https://www.facebook.com/p/GM-University-61554085324048/?locale=nl_BE" target="_blank"
+
                                 class="text-gray-400 hover:text-blue-500 transition duration-300"><i
+
                                     class="fab fa-facebook"></i></a>
+
                             <a href="https://twitter.com/gmunivsbp/status/1080668858564849664" target="_blank"
+
                                 class="text-gray-400 hover:text-blue-400 transition duration-300"><i
+
                                     class="fab fa-twitter"></i></a>
+
                             <a href="https://in.linkedin.com/company/gmu.ac.in" target="_blank"
+
                                 class="text-gray-400 hover:text-blue-600 transition duration-300"><i
+
                                     class="fab fa-linkedin"></i></a>
+
                             <a href="https://www.instagram.com/gmuniversity_official_set_dvg/#" target="_blank"
+
                                 class="text-gray-400 hover:text-pink-500 transition duration-300"><i
+
                                     class="fab fa-instagram"></i></a>
+
                         </div>
+
                     </div>
+
                 </div>
+
+
 
                 <div class="text-center">
+
                     <p class="text-sm text-gray-500">&copy; 2024 GM University - Department of Cybersecurity. All rights
+
                         reserved.</p>
+
                 </div>
+
             </div>
+
         </footer>
 
-        <!-- Chatbot -->
+
+
         <div id="chatbot"
+
             style="position: fixed; bottom: 100px; right: 25px; width: 350px; background: #fff; border-radius: 16px; box-shadow: 0 8px 25px rgba(0,0,0,0.2); overflow: hidden; display: none; flex-direction: column; z-index: 9999; font-family: 'Poppins', sans-serif;">
 
-            <!-- Header -->
+
+
             <div id="chatbot-header"
+
                 style="background: linear-gradient(90deg, #f4b400, #f39c12); color: white; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between;">
+
                 <div style="display: flex; align-items: center;">
+
                     <img src="https://images.pexels.com/photos/3777931/pexels-photo-3777931.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop"
+
                         alt="Mallika" style="width: 45px; height: 45px; border-radius: 50%; margin-right: 10px;">
+
                     <div>
+
                         <div style="font-weight: 600; font-size: 1rem;">Mallika</div>
+
                         <div style="font-size: 0.8rem; opacity: 0.9;">AI Assistant</div>
+
                     </div>
+
                 </div>
+
                 <button id="chatbot-toggle"
+
                     style="background: transparent; border: none; color: white; font-size: 1.3rem; cursor: pointer;">
+
                     <i class="fas fa-times"></i>
+
                 </button>
+
             </div>
 
-            <!-- Messages -->
+
+
             <div id="chatbot-messages"
+
                 style="flex-grow: 1; padding: 15px; overflow-y: auto; background: #f9fafb; max-height: 400px;">
+
                 <div class="bot-message" style="display: flex; align-items: flex-start; margin-bottom: 15px;">
+
                     <img src="https://images.pexels.com/photos/3777931/pexels-photo-3777931.jpeg?auto=compress&cs=tinysrgb&w=40&h=40&fit=crop"
+
                         alt="Mallika" style="width: 35px; height: 35px; border-radius: 50%; margin-right: 10px;">
+
                     <div
+
                         style="background: white; border-radius: 10px; padding: 10px 15px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); max-width: 80%;">
+
                         <p style="margin: 0; font-size: 0.95rem;">👋 Hello! I'm <b>Mallika</b>, your AI assistant for the
+
                             Cybersecurity Department.<br>How can I help you today?</p>
+
                         <div style="margin-top: 10px;">
+
                             <button class="quick-reply" onclick="quickReply('Programs')"
+
                                 style="margin:3px; background:#f4b400; color:white; border:none; border-radius:20px; padding:6px 12px; cursor:pointer;">Programs</button>
+
                             <button class="quick-reply" onclick="quickReply('Admissions')"
+
                                 style="margin:3px; background:#f4b400; color:white; border:none; border-radius:20px; padding:6px 12px; cursor:pointer;">Admissions</button>
+
                             <button class="quick-reply" onclick="quickReply('Faculty')"
+
                                 style="margin:3px; background:#f4b400; color:white; border:none; border-radius:20px; padding:6px 12px; cursor:pointer;">Faculty</button>
+
                             <button class="quick-reply" onclick="quickReply('Contact')"
+
                                 style="margin:3px; background:#f4b400; color:white; border:none; border-radius:20px; padding:6px 12px; cursor:pointer;">Contact</button>
+
                         </div>
+
                     </div>
+
                 </div>
+
             </div>
 
-            <!-- Input -->
+
+
             <div style="display: flex; padding: 10px; border-top: 1px solid #eee; background: #fff;">
+
                 <input type="text" id="chatbot-input" placeholder="Type your message..."
+
                     style="flex: 1; border: none; outline: none; font-size: 0.95rem; padding: 8px;">
+
                 <button id="chatbot-send"
+
                     style="background: #f4b400; border: none; color: white; padding: 10px 14px; border-radius: 8px; cursor: pointer; font-size: 1rem;">
+
                     <i class="fas fa-paper-plane"></i>
+
                 </button>
+
             </div>
+
         </div>
 
-        <!-- Floating Chatbot Icon -->
+
+
         <div id="chatbot-float"
+
             style="position: fixed; bottom: 25px; right: 25px; display: flex; align-items: center; gap: 10px; cursor: pointer; z-index: 9999;">
+
             <div
+
                 style="width: 60px; height: 60px; border-radius: 50%; overflow: hidden; box-shadow: 0 6px 15px rgba(0,0,0,0.2);">
+
                 <img src="https://i.pinimg.com/originals/0c/67/5a/0c675a8e1061478d2b7b21b330093444.gif" alt="Mallika"
+
                     style="width: 100%; height: 100%; object-fit: cover;">
+
             </div>
+
             <div
+
                 style="background: #fff; border-radius: 12px; padding: 8px 12px; box-shadow: 0 3px 8px rgba(0,0,0,0.15); max-width: 220px;">
+
                 <span style="font-weight: 600; display:block;">Have a question?</span>
+
                 <span style="font-size: 0.9rem;">Chat with Mallika, our AI Assistant 💬</span>
+
             </div>
+
         </div>
 
-        <!-- Scroll To Top Button -->
+
+
         <button id="scrollTopBtn" onclick="scrollToQuickAccess()"
+
             style="position: fixed; bottom: 100px; right: 100px; background:#f4b400; color:#fff; border:none; border-radius:50%; width:50px; height:50px; font-size:22px; box-shadow:0 6px 15px rgba(0,0,0,0.15); cursor:pointer; display:none; align-items:center; justify-content:center; transition:all 0.3s ease; z-index:999;">
+
             <i class="fas fa-arrow-up"></i>
+
         </button>
 
-        <!-- JS -->
+
+
         <script>
+
             const chatbot = document.getElementById('chatbot');
+
             const chatbotFloat = document.getElementById('chatbot-float');
+
             const chatbotToggle = document.getElementById('chatbot-toggle');
+
             const chatbotMessages = document.getElementById('chatbot-messages');
+
             const chatbotInput = document.getElementById('chatbot-input');
+
             const chatbotSend = document.getElementById('chatbot-send');
+
             const scrollBtn = document.getElementById("scrollTopBtn");
 
+
+
             // Toggle chatbot open/close
+
             chatbotFloat.addEventListener('click', () => {
+
                 chatbot.style.display = 'flex';
+
                 chatbotFloat.style.display = 'none';
+
             });
+
+
 
             chatbotToggle.addEventListener('click', () => {
+
                 chatbot.style.display = 'none';
+
                 chatbotFloat.style.display = 'flex';
+
             });
 
+
+
             // Handle user message
+
             chatbotSend.addEventListener('click', sendMessage);
+
             chatbotInput.addEventListener('keypress', e => { if (e.key === 'Enter') sendMessage(); });
 
+
+
             function sendMessage() {
+
                 const userMsg = chatbotInput.value.trim();
+
                 if (userMsg === '') return;
+
                 addMessage(userMsg, 'user');
+
                 chatbotInput.value = '';
+
                 setTimeout(() => botReply(userMsg), 600);
+
             }
+
+
 
             function addMessage(text, sender) {
+
                 const msgDiv = document.createElement('div');
+
                 msgDiv.style.display = 'flex';
+
                 msgDiv.style.alignItems = 'flex-start';
+
                 msgDiv.style.marginBottom = '15px';
 
+
+
                 if (sender === 'user') {
+
                     msgDiv.innerHTML = `
+
                     <div style="background:#f4b400; color:white; border-radius:10px; padding:10px 15px; margin-left:auto; max-width:80%; font-size:0.95rem;">
+
                         ${text}
+
                     </div>`;
+
                 } else {
+
                     msgDiv.innerHTML = `
+
                     <img src="https://images.pexels.com/photos/3777931/pexels-photo-3777931.jpeg?auto=compress&cs=tinysrgb&w=40&h=40&fit=crop" style="width:35px; height:35px; border-radius:50%; margin-right:10px;">
+
                     <div style="background:white; border-radius:10px; padding:10px 15px; box-shadow:0 2px 6px rgba(0,0,0,0.1); max-width:80%; font-size:0.95rem;">
+
                         ${text}
+
                     </div>`;
+
                 }
+
+
 
                 chatbotMessages.appendChild(msgDiv);
+
                 chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+
             }
+
+
 
             function botReply(input) {
+
                 const responses = {
+
                     'programs': '🎓 We offer B.Tech, M.Tech, and Ph.D. in cybersecurity and information security.',
+
                     'admissions': '📝 Admission details: Eligibility - 12th PUC Science, Entrance - KCET / Management, Seats - 120.',
+
                     'faculty': '👩‍🏫 Visit our Faculty section to learn about our experienced professors and research experts.',
+
                     'contact': '📞 You can reach us at cybersecurity@gmu.ac.in or +91-9945221208.'
+
                 };
 
+
+
                 const key = input.toLowerCase().trim();
+
                 const reply = responses[key] || "🤖 I'm still learning! Please visit our department website for more info.";
+
                 addMessage(reply, 'bot');
+
             }
+
+
 
             function quickReply(text) {
+
                 chatbotInput.value = text;
+
                 sendMessage();
+
             }
+
+
 
             // Scroll To Top
+
             window.onscroll = function () {
+
                 if (document.documentElement.scrollTop > 300) scrollBtn.style.display = "flex";
+
                 else scrollBtn.style.display = "none";
+
             };
 
+
+
             function scrollToQuickAccess() {
+
                 const quickAccess = document.getElementById("wedges");
+
                 if (quickAccess) quickAccess.scrollIntoView({ behavior: "smooth" });
+
                 else window.scrollTo({ top: 0, behavior: "smooth" });
+
             }
+
         </script>
 
-        <!-- FontAwesome -->
+
+
         <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
-        <!-- Scroll to Top Button -->
+
+
         <button id="scrollTopBtn" onclick="scrollToQuickAccess()" style="
+
             position: fixed;
+
             bottom: 90px; 
+
             right: 25px;
+
             background: #f4b400;
+
             color: white;
+
             border: none;
+
             border-radius: 50%;
+
             width: 50px;
+
             height: 50px;
+
             font-size: 22px;
+
             box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+
             cursor: pointer;
+
             display: none;
+
             align-items: center;
+
             justify-content: center;
+
             transition: all 0.3s ease;
+
             z-index: 999;
+
         ">
+
             <i class="fas fa-arrow-up"></i>
+
         </button>
+
         <script>
+
             // Show/hide the button on scroll
+
             window.onscroll = function () {
+
                 const scrollBtn = document.getElementById("scrollTopBtn");
+
                 // Ensure both floating elements are handled: chatbot and scroll-to-top
+
                 const isChatbotOpen = chatbot.style.display === 'flex';
 
+
+
                 if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+
                     // Show scroll button only if chatbot is closed
+
                     scrollBtn.style.display = isChatbotOpen ? "none" : "flex";
+
                 } else {
+
                     scrollBtn.style.display = "none";
+
                 }
 
+
+
                 // Re-adjust chatbot float visibility
+
                 if (document.documentElement.scrollTop > 300 && !isChatbotOpen) {
+
                     chatbotFloat.style.display = 'flex';
+
                 } else if (!isChatbotOpen) {
+
                     chatbotFloat.style.display = 'flex';
+
                 }
+
+
 
             };
 
+
+
             // Smooth scroll to Quick Access
+
             function scrollToQuickAccess() {
+
                 const quickAccess = document.getElementById("wedges");
+
                 if (quickAccess) {
+
                     quickAccess.scrollIntoView({ behavior: "smooth" });
+
                 } else {
+
                     window.scrollTo({ top: 0, behavior: "smooth" });
+
                 }
+
             }
+
         </script>
 
+
+
         <script>
+
             document.addEventListener("DOMContentLoaded", function () {
+
                 // ====== HAMBURGER MENU TOGGLE (Moved outside the previous script block) ======
+
                 const hamburger = document.getElementById('hamburger');
+
                 const navMenu = document.getElementById('nav-menu');
 
+
+
                 // NOTE: The navigation structure is based on Tailwind CSS and does not fully use the provided CSS variables for the menu, so I'm commenting out the custom JS toggle for now, as the current HTML uses a standard hidden/block toggle handled elsewhere.
+
                 /*
+
                 if (hamburger && navMenu) {
+
                     hamburger.addEventListener('click', function() {
+
                         navMenu.classList.toggle('active');
+
                         this.classList.toggle('open');
+
                     });
+
             
+
                     document.querySelectorAll('.nav-link').forEach(link => {
+
                         link.addEventListener('click', function() {
+
                             navMenu.classList.remove('active');
+
                             hamburger.classList.remove('open');
+
                         });
+
                     });
+
                 }
+
                 */
 
 
+
+
+
                 // ====== SLIDER SECTION ======
+
                 const slides = Array.from(document.querySelectorAll('.slide'));
+
                 let index = 0;
+
                 const intervalTime = 5000; // 5 seconds per slide
 
+
+
                 function showNextSlide() {
+
                     slides[index].classList.remove('active');
+
                     slides[index].style.animation = 'none';
+
                     void slides[index].offsetWidth; // reflow to restart animation
+
                     slides[index].style.animation = '';
 
+
+
                     index = (index + 1) % slides.length;
+
                     slides[index].classList.add('active');
+
                 }
 
+
+
                 if (slides.length > 0 && !slides[0].classList.contains('active')) {
+
                     slides[0].classList.add('active');
+
                 }
+
+
 
                 setInterval(showNextSlide, intervalTime);
 
+
+
                 // ====== GALLERY LIGHTBOX ======
+
                 const lightbox = document.getElementById('lightbox');
+
                 const lightboxImg = document.getElementById('lightbox-img');
 
+
+
                 window.openLightbox = function (element) {
+
                     if (lightbox && lightboxImg) {
+
                         lightbox.style.display = "block";
+
                         lightboxImg.src = element.src;
+
                     }
+
                 };
+
+
 
                 window.closeLightbox = function () {
+
                     if (lightbox) {
+
                         lightbox.style.display = "none";
+
                     }
+
                 };
 
+
+
                 if (lightboxImg) {
+
                     lightboxImg.addEventListener('click', function (event) {
+
                         event.stopPropagation();
+
                     });
+
                 }
+
             });
+
         </script>
 
+
+
     </body>
+
+
 
     </html>
