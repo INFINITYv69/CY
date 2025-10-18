@@ -3305,7 +3305,21 @@
 
                 </section>
 
-
+ <div id="pdfModal" class="hidden fixed inset-0 z-50 items-center justify-center bg-black/75" role="dialog" aria-hidden="true" aria-label="PDF viewer">
+    <div class="bg-white w-[90%] max-w-4xl h-[90%] rounded overflow-hidden flex flex-col">
+      <div class="flex items-center gap-2 bg-gray-100 p-2">
+        <button id="btnPrev" class="px-3 py-1 border rounded">Prev</button>
+        <button id="btnNext" class="px-3 py-1 border rounded">Next</button>
+        <button id="btnZoomOut" class="px-3 py-1 border rounded">-</button>
+        <button id="btnZoomIn" class="px-3 py-1 border rounded">+</button>
+        <div class="ml-auto text-sm text-gray-700 px-2">Page <span id="pageNum">0</span> / <span id="pageCount">0</span></div>
+        <button id="btnClose" class="px-3 py-1 border rounded ml-2">Close</button>
+      </div>
+      <div id="canvasWrap" class="flex-1 overflow-auto bg-gray-200 p-4 flex justify-center items-start">
+        <!-- canvas inserted dynamically -->
+      </div>
+    </div>
+  </div>
     <section id="course-documents" class="course-docs-section section bg-gray-50">
         <div class="container max-w-7xl mx-auto px-4">
             <div class="section-header">
@@ -5677,6 +5691,188 @@
             });
         });
     </script>
+  <!-- PDF.js (loaded from UNPKG). Version can be adjusted if needed -->
+  <script>
+    // Minimal loader for pdf.js. If your site is offline/blocked from UNPKG, host pdfjs-dist yourself.
+    const pdfjsVersion = '3.9.179';
+    const pdfjsUrl = `https://unpkg.com/pdfjs-dist@${pdfjsVersion}/build/pdf.min.js`;
+    const pdfWorkerUrl = `https://unpkg.com/pdfjs-dist@${pdfjsVersion}/build/pdf.worker.min.js`;
+
+    function loadScript(src) {
+      return new Promise((resolve, reject) => {
+        const s = document.createElement('script');
+        s.src = src;
+        s.onload = resolve;
+        s.onerror = reject;
+        document.head.appendChild(s);
+      });
+    }
+
+    (async function initPdfInterceptor() {
+      try {
+        await loadScript(pdfjsUrl);
+      } catch (err) {
+        console.error('Failed to load pdf.js:', err);
+        return;
+      }
+
+      if (!window.pdfjsLib) {
+        console.error('pdfjsLib not available');
+        return;
+      }
+      pdfjsLib.GlobalWorkerOptions.workerSrc = pdfWorkerUrl;
+
+      // Elements
+      const modal = document.getElementById('pdfModal');
+      const canvasWrap = document.getElementById('canvasWrap');
+      const btnPrev = document.getElementById('btnPrev');
+      const btnNext = document.getElementById('btnNext');
+      const btnZoomIn = document.getElementById('btnZoomIn');
+      const btnZoomOut = document.getElementById('btnZoomOut');
+      const btnClose = document.getElementById('btnClose');
+      const pageNumSpan = document.getElementById('pageNum');
+      const pageCountSpan = document.getElementById('pageCount');
+
+      let pdfDoc = null;
+      let currentPage = 1;
+      let scale = 1.25;
+      let canvas = null;
+      let ctx = null;
+      let isOpen = false;
+
+      function createCanvas() {
+        canvasWrap.innerHTML = '';
+        canvas = document.createElement('canvas');
+        canvas.className = 'pdf-page';
+        ctx = canvas.getContext('2d');
+        canvasWrap.appendChild(canvas);
+        // prevent right-click on canvas
+        canvas.addEventListener('contextmenu', (e) => e.preventDefault());
+      }
+
+      async function renderPage(pageNum) {
+        const page = await pdfDoc.getPage(pageNum);
+        const viewport = page.getViewport({ scale });
+        canvas.width = Math.floor(viewport.width);
+        canvas.height = Math.floor(viewport.height);
+        canvasWrap.scrollTop = 0;
+        const renderContext = { canvasContext: ctx, viewport };
+        await page.render(renderContext).promise;
+        pageNumSpan.textContent = pageNum;
+        pageCountSpan.textContent = pdfDoc.numPages;
+        btnPrev.disabled = pageNum <= 1;
+        btnNext.disabled = pageNum >= pdfDoc.numPages;
+      }
+
+      function openModal() {
+        modal.classList.remove('hidden');
+        modal.setAttribute('aria-hidden', 'false');
+        isOpen = true;
+        window.addEventListener('keydown', blockKeys, true);
+        modal.addEventListener('contextmenu', preventContext);
+      }
+
+      function closeModal() {
+        modal.classList.add('hidden');
+        modal.setAttribute('aria-hidden', 'true');
+        isOpen = false;
+        window.removeEventListener('keydown', blockKeys, true);
+        modal.removeEventListener('contextmenu', preventContext);
+        canvasWrap.innerHTML = '';
+        pdfDoc = null;
+      }
+
+      function preventContext(e) { e.preventDefault(); }
+
+      function blockKeys(e) {
+        if (!isOpen) return;
+        // block Ctrl/Cmd+S and Ctrl/Cmd+P while viewer open
+        if ((e.ctrlKey || e.metaKey) && (e.key === 's' || e.key === 'S' || e.key === 'p' || e.key === 'P')) {
+          e.preventDefault();
+          e.stopPropagation();
+          return false;
+        }
+      }
+
+      btnPrev.addEventListener('click', async () => {
+        if (!pdfDoc) return;
+        if (currentPage <= 1) return;
+        currentPage--;
+        await renderPage(currentPage);
+      });
+      btnNext.addEventListener('click', async () => {
+        if (!pdfDoc) return;
+        if (currentPage >= pdfDoc.numPages) return;
+        currentPage++;
+        await renderPage(currentPage);
+      });
+      btnZoomIn.addEventListener('click', async () => {
+        scale = Math.min(scale + 0.25, 4);
+        if (pdfDoc) await renderPage(currentPage);
+      });
+      btnZoomOut.addEventListener('click', async () => {
+        scale = Math.max(0.5, scale - 0.25);
+        if (pdfDoc) await renderPage(currentPage);
+      });
+      btnClose.addEventListener('click', () => closeModal());
+      modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+
+      function isPdfLink(href) {
+        if (!href) return false;
+        try {
+          const u = new URL(href, location.href);
+          return u.pathname.toLowerCase().endsWith('.pdf');
+        } catch (err) {
+          return href.toLowerCase().split('?')[0].split('#')[0].endsWith('.pdf');
+        }
+      }
+
+      async function openPdfFromUrl(url) {
+        try {
+          // IMPORTANT: this fetch will expose the PDF bytes to DevTools network tab.
+          // For stronger protection, serve PDFs from authenticated endpoints or proxy them server-side.
+          const res = await fetch(url, { credentials: 'same-origin' });
+          if (!res.ok) throw new Error('Failed to fetch PDF (' + res.status + ')');
+          const arrayBuffer = await res.arrayBuffer();
+          pdfDoc = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+          createCanvas();
+          currentPage = 1;
+          await renderPage(currentPage);
+          openModal();
+        } catch (err) {
+          console.error(err);
+          alert('Could not load PDF: ' + err.message);
+        }
+      }
+
+      // Attach interceptors to existing links
+      function attachInterceptors() {
+        document.querySelectorAll('a').forEach(a => {
+          const href = a.getAttribute('href');
+          if (isPdfLink(href)) {
+            // remove download attribute if present
+            try { a.removeAttribute('download'); } catch {}
+            a.addEventListener('click', (ev) => {
+              ev.preventDefault();
+              const url = a.getAttribute('href');
+              openPdfFromUrl(url);
+            });
+            // prevent context menu on link (avoid "Save link as")
+            a.addEventListener('contextmenu', (ev) => ev.preventDefault());
+          }
+        });
+      }
+
+      attachInterceptors();
+
+      // If your page dynamically inserts PDF links after load, you may enable the MutationObserver below:
+      /*
+      const mo = new MutationObserver(() => attachInterceptors());
+      mo.observe(document.body, { childList: true, subtree: true });
+      */
+
+    })();
+  </script>
         </body>
         </html>
 
