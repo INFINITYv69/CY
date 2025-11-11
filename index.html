@@ -2318,6 +2318,147 @@
 
             }
 
+/* Faculty Profile Hover Effects - Different Colours */
+.faculty-card {
+  background: #ffffff;
+  border-radius: 1rem;
+  transition: all 0.4s ease;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.faculty-card img {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.faculty-card:hover img {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(0, 191, 165, 0.4);
+}
+
+.faculty-card h3,
+.faculty-card .position {
+  transition: color 0.3s ease;
+}
+
+/* Assign different hover colors for variety */
+.faculty-card:nth-child(1):hover {
+  background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+}
+
+.faculty-card:nth-child(2):hover {
+  background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+}
+
+.faculty-card:nth-child(3):hover {
+  background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+}
+
+.faculty-card:nth-child(4):hover {
+  background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+}
+
+.faculty-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+}
+
+.faculty-card:hover h3 {
+  color: #4a206a; /* your theme primary color */
+}
+
+.faculty-card:hover .position {
+  color: #00bfa5; /* your theme secondary color */
+}
+/* === Faculty Card Base Style === */
+.faculty-card {
+  background: linear-gradient(145deg, #f0f8ff, #e6f0ff); /* Soft light blue base */
+  border-radius: 1rem;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.4s ease;
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(0, 64, 128, 0.08);
+  border: 1px solid #dce6f5;
+}
+
+/* === Image Styling === */
+.faculty-card img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #4a90e2; /* soft blue border */
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.faculty-card:hover img {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(74, 144, 226, 0.4);
+}
+
+/* === Text Styling === */
+.faculty-card h3 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #004080; /* deep blue for title */
+  margin-bottom: 5px;
+  transition: color 0.3s ease;
+}
+
+.faculty-card .position {
+  color: #007acc; /* lighter blue for subtitle */
+  font-style: italic;
+  margin-bottom: 1rem;
+  transition: color 0.3s ease;
+}
+
+/* === Hover Effects === */
+.faculty-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  background: linear-gradient(145deg, #e3f2fd, #cfe8ff);
+  box-shadow: 0 12px 25px rgba(0, 102, 204, 0.2);
+}
+
+.faculty-card:hover h3 {
+  color: #002f6c;
+}
+
+.faculty-card:hover .position {
+  color: #00bfa5; /* matches your site’s secondary color */
+}
+#bos .academic-card {
+  background: #ffffff;
+  border-radius: 1rem;
+  transition: all 0.3s ease;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+#bos .academic-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #f0f7ff, #e6f0ff);
+}
+
+#bos img {
+  width: 130px;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 50%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#bos img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0, 102, 204, 0.3);
+}
+
+#bos .section-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
 
 
             /* End Quick Access Styling */
@@ -3711,6 +3852,65 @@
 
             </section>
 
+<section id="bos" class="section bg-gray-50">
+  <div class="container max-w-7xl mx-auto px-4">
+    <div class="section-header">
+      <h2 class="section-title text-[--primary-color]">📘 Board of Studies (BoS)</h2>
+      <p class="section-subtitle">Department of CS – Cyber Security & Information Security</p>
+    </div>
+
+    <!-- Chairperson & Chairman -->
+
+    <div >
+      <div class="academic-card border-t-8 border-indigo-500 p-6 text-center">
+        <i class="fas fa-user-tie text-4xl text-indigo-500 mb-3"></i>
+         <img src="static/images/faculty/vc.jpg">
+        <h3 class="font-bold text-2xl mb-2 text-[--primary-color]">Chairperson</h3>
+        <p class="text-gray-700 text-lg font-semibold">Dr. S. R. Shankapal</p>
+        <p class="text-sm text-gray-600">Vice Chancellor, GM University</p>
+      </div>
+    </div>
+
+      <div class="academic-card border-t-8 border-indigo-500 p-6 text-center">
+        <i class="fas fa-user-tie text-4xl text-indigo-500 mb-3"></i>
+        <h3 class="font-bold text-2xl mb-2 text-[--primary-color]">Chairperson</h3>
+        <img src="static/images/faculty/pro vc.jpg">
+        <p class="text-gray-700 text-lg font-semibold">Dr. H.D. Maheshappa</p>
+        <p class="text-sm text-gray-600">Pro-Vice Chancellor, GM University</p>
+      </div>
+
+      <div class="academic-card border-t-8 border-purple-500 p-6 text-center">
+        <i class="fas fa-user-tie text-4xl text-purple-500 mb-3"></i>
+        <h3 class="font-bold text-2xl mb-2 text-[--primary-color]">Chairman</h3>
+        <img src="static/images/faculty/princi.jpg">
+        <p class="text-gray-700 text-lg font-semibold">Dr. Sanjay Pande M B</p>
+        <p class="text-sm text-gray-600">Director, School of Computer Science and Technology</p>
+      </div>
+    </div>
+<div class="academic-card border-t-8 border-cyan-500 p-6 mb-10 text-center">
+      <i class="fas fa-user-graduate text-4xl text-cyan-500 mb-3"></i>
+      <h3 class="font-bold text-2xl mb-2 text-[--primary-color]">External Member</h3>
+      <p class="text-gray-700 text-lg font-semibold">Dr. B N Veerappa</p>
+      <p class="text-sm text-gray-600">Professor, Computer Science and Engineering</p>
+    </div>
+  
+    <div class="academic-card border-t-8 border-purple-500 p-6 text-center">
+        <i class="fas fa-user-tie text-4xl text-purple-500 mb-3"></i>
+        <h3 class="font-bold text-2xl mb-2 text-[--primary-color]">Internal Member</h3>
+        <img src="static/images/faculty/Picture2.jpg">
+        <p class="text-gray-700 text-lg font-semibold">Dr.Arun Kumar B T</p>
+        <p class="text-sm text-gray-600">Head of Department, CSE-Cybersecurity and Information Securitys</p>
+      </div>
+    
+
+    <!-- BoS Documents -->
+    <div class="academic-card border-t-8 border-gray-400 p-6 text-center">
+      <i class="fas fa-folder-open text-4xl text-gray-500 mb-3"></i>
+      <h3 class="font-bold text-2xl mb-2 text-[--primary-color]">BoS Documents</h3>
+      <p class="text-gray-600 italic">Documents will be uploaded soon.</p>
+    </div>
+  </div>
+</section>
 
 
             <section id="student-corner" class="section student-corner bg-gray-50">
